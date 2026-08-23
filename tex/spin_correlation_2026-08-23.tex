@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=22mm]{geometry}
+\usepackage{amsmath,amssymb,bm,mathtools,booktabs,hyperref,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newcommand{\Lb}{\bar\Lambda}
+\title{Daily Research Report: Dynamical Study of $s\bar s\to\Lambda\bar\Lambda$ Spin Correlations}
+\author{Research synthesis -- 23 August 2026}\date{}
+\begin{document}\maketitle
+\begin{abstract}This report reconciles today's quantum-dynamical study of strange-quark pair spin correlations. The internally consistent picture is: the observable is a connected two-body spin tensor; relativistic axial tensors require momentum-dependent spin-tetrad projection; independent one-body spin relaxation damps the pair mode with the sum of leg rates; stochastic fields relax the isotropic scalar only through the relative field; finite-memory noise gives a non-Markovian kernel; and hadronization, feed-down and same-source dilution are indispensable.\end{abstract}
+\section{Physical observable}Define $C_{ab}=\langle\sigma_{1a}\sigma_{2b}\rangle-\langle\sigma_{1a}\rangle\langle\sigma_{2b}\rangle$ and $P=\delta_{ab}C_{ab}/3$. For vanishing one-body polarization, $P=\langle\bm\sigma_1\cdot\bm\sigma_2\rangle/3$. STAR reports $P_{\Lambda\bar\Lambda}=0.181\pm0.035_{\rm stat}\pm0.022_{\rm sys}$ for short-range pairs and long-range consistency with zero; CMS at LHC energies finds no statistically significant $\Lambda\bar\Lambda$ deviation from zero.
+\section{Density operator and BBGKY}Write $\rho_{12}=\frac14[I\otimes I+p_a\sigma_a\otimes I+\bar p_bI\otimes\sigma_b+C^{\rm full}_{ab}\sigma_a\otimes\sigma_b]$. Using $\mathrm{Tr}(\sigma_a\sigma_b)=2\delta_{ab}$ recovers each coefficient and $C_{ab}=C^{\rm full}_{ab}-p_a\bar p_b$. From $i\partial_t\rho_N=[H_N,\rho_N]$, tracing spectators gives $i\partial_t\rho_{12}=[H_{12},\rho_{12}]+\mathrm{Tr}_3([V_{13}+V_{23},\rho_{123}])$, showing that closure requires a cluster/self-energy approximation.
+\section{Relativistic spin projection}For $u\bar u=\frac12(\not p+m)(1+\gamma^5\not S)$, gamma traces give $\bar u\gamma^\mu\gamma^5u=2mS^\mu$. Introduce $e_a\cdot p=0$, $e_a\cdot e_b=-\delta_{ab}$ and $\mathcal A^{\mu\nu}=e_{1a}^\mu e_{2b}^\nu C_{ab}$. Hence $C_{ab}=e_{1a\mu}e_{2b\nu}\mathcal A^{\mu\nu}$ and
+\[\boxed{P=\frac13\sum_a e_{1a\mu}e_{2a\nu}\mathcal A^{\mu\nu}.}\]
+This corrects a naive lab-frame spatial trace.
+\section{Independent relaxation}For $\mathcal L_m\rho=\frac{\gamma_m}{4}\sum_a(\sigma_{ma}\rho\sigma_{ma}-\rho)$ and $\sum_a\sigma_a\sigma_i\sigma_a=-\sigma_i$, $\mathcal L_m^\dagger\sigma_{mi}=-\gamma_m\sigma_{mi}$. Therefore
+\[\boxed{\dot P=-(\gamma_s+\gamma_{\bar s})P,\quad P(t_h)=P(t_0)e^{-\int(\gamma_s+\gamma_{\bar s})dt}.}\]
+Perturbative strange-quark spin equilibration estimates are much slower than heavy-ion dynamical times.
+\section{Relative stochastic fields}Let $H_I=\frac12(\bm\xi_1\cdot\bm\sigma_1+\bm\xi_2\cdot\bm\sigma_2)$. With $\bar{\bm\xi}=(\bm\xi_1+\bm\xi_2)/2$ and $\bm\xi_-=\bm\xi_1-\bm\xi_2$, the common part couples to $\bm\sigma_1+\bm\sigma_2$. For $Q=\bm\sigma_1\cdot\bm\sigma_2$, $[Q,\bm\sigma_1+\bm\sigma_2]=0$, so perfectly common noise cannot change the scalar correlation. For $\langle\xi_m^a(t)\xi_n^b(t')\rangle=2D_{mn}\delta^{ab}\delta(t-t')$,
+\[\dot\rho=-\frac14\sum_{mn,a}D_{mn}[\sigma_m^a,[\sigma_n^a,\rho]],\]
+and Pauli algebra yields
+\[\dot C_{ij}=-2(D_{11}+D_{22})C_{ij}+2D_{12}(\delta_{ij}C_{kk}-C_{ji}).\]
+For $C_{ij}=P\delta_{ij}$ and equivalent trajectories,
+\[\boxed{\Gamma_{\rm rel}(r)=4[D(0)-D(r)],\qquad\dot P=-\Gamma_{\rm rel}P.}\]
+\section{Finite memory}With $\langle\xi_m^a(t)\xi_n^b(t-\tau)\rangle=\delta^{ab}K_{mn}(\tau)$, second-order TCL gives
+\[\boxed{\dot P(t)=-2P(t)\int_0^t d\tau[K_{11}+K_{22}-K_{12}-K_{21}](\tau).}\]
+For equivalent legs this is $\dot P=-4P\int_0^t(K_0-K_r)d\tau$. If $K_0-K_r=K_\Delta e^{-\tau/\tau_c}$,
+\[P(t)=P(0)e^{-4K_\Delta\tau_c[t-\tau_c(1-e^{-t/\tau_c})]}.\]
+Thus short-time decay is quadratic and long-time decay becomes exponential.
+\section{Gauge-covariant QCD interpretation}A candidate microscopic kernel is $\mathcal K_{12}^{ij}\sim\kappa_s^2\langle B^{ai}(x_1)\mathcal U^{ab}_{C_{12}}B^{bj}(x_2)\rangle$. The Wilson line is required for gauge covariance. The coefficient $\kappa_s$ must be matched from relativistic axial kinetic theory; importing a heavy-quark Pauli coefficient is not justified.
+\section{Kadanoff--Baym/Wigner route}Dyson equations imply $(i\not\partial-m)G^<=\Sigma^R\circ G^<+\Sigma^<\circ G^A$ and its right-acting partner. With $X=(x_1+x_2)/2$, $s=x_1-x_2$, $G^<(X,p)=\int d^4s e^{ip\cdot s}G^<(X+s/2,X-s/2)$. Convolutions become Moyal products $A\star B=A\exp[\frac i2(\overleftarrow\partial_X\cdot\overrightarrow\partial_p-\overleftarrow\partial_p\cdot\overrightarrow\partial_X)]B$. Decompose $W=\frac14(\mathcal F+i\gamma^5\mathcal P+\gamma^\mu\mathcal V_\mu+\gamma^\mu\gamma^5\mathcal A_\mu+\frac12\sigma^{\mu\nu}\mathcal S_{\mu\nu})$. The pair problem requires the connected four-point function, double Wigner transform, axial--axial projection, and finally the tetrad contraction. The target structure is $\mathcal DP=\mathcal I_{\rm rel}[P]+\mathcal S_{\rm pair}+\mathcal R_{\rm basis}$.
+\section{Hadronization}A minimal map is $C^{\Lambda\bar\Lambda}_{ij}=\sum_{ab}T^{(\Lambda)}_{ia}\bar T^{(\bar\Lambda)}_{jb}C^{s\bar s}_{ab}+C^{\rm conn,had}_{ij}$. With feed-down and source mixing,
+\[\boxed{P_{\Lambda\bar\Lambda}^{\rm obs}=D_{\rm had}f_{\rm same}P_{s\bar s}^{\rm src}S_{\rm rel}+P_{\rm conn}^{\rm had/resc}.}\]
+This factorization is phenomenological and can fail if spin and kinematics are nonfactorizable.
+\section{Reconciled conclusions and next step}The surviving conclusions are: connected two-body tensors are essential; tetrad projection is mandatory; independent relaxation rates add; common-mode noise cancels exactly for the scalar; relative-field damping gives the white-noise and finite-memory limits; perturbative spin flips appear too slow to dominate; and hadronization/feed-down/source mixing are indispensable. The highest-priority next step is a gauge-covariant connected four-point Kadanoff--Baym derivation with explicit color/spinor indices and an axial--axial projection, followed by quantitative estimates of same-source fractions at RHIC and LHC energies.
+\begin{thebibliography}{6}\bibitem{STAR} STAR Collaboration, Nature 650 (2026) 65, arXiv:2506.05499.\bibitem{CMS} CMS Collaboration, CMS-PAS-HIN-26-002 (17 May 2026).\bibitem{KRR} J.I. Kapusta, E. Rrapaj, S. Rudaz, Phys. Rev. C 101, 024907 (2020).\bibitem{HHY} K. Hattori, Y. Hidaka, D.-L. Yang, Phys. Rev. D 100, 096011 (2019).\bibitem{YHH} D.-L. Yang, K. Hattori, Y. Hidaka, arXiv:2002.02612.\bibitem{GL} J.-H. Gao, Z.-T. Liang, arXiv:1902.06510.\end{thebibliography}\end{document}
