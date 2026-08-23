@@ -19,29 +19,48 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install LaTeX
+      - name: Install LaTeX and PDF tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-science
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-science poppler-utils
 
-      - name: Compile all spin-correlation reports
+      - name: Compile and verify all spin-correlation reports
         run: |
+          set -euo pipefail
+          rm -rf build
           mkdir -p pdf build
           for f in tex/spin_correlation_*.tex; do
             [ -e "$f" ] || continue
             base=$(basename "$f" .tex)
+
+            # Never permit a stale binary to survive a source update.
+            rm -f "pdf/${base}.pdf" "build/${base}.pdf"
+
             latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=build "$f"
+            test -s "build/${base}.pdf"
+
+            pages=$(pdfinfo "build/${base}.pdf" | awk '/^Pages:/ {print $2}')
+            test -n "$pages"
+            test "$pages" -gt 0
+
+            # Historical repair guard: the validated 22 Aug source is a 9-page report.
+            if [ "$base" = "spin_correlation_2026-08-22" ]; then
+              test "$pages" -eq 9
+            fi
+
             cp "build/${base}.pdf" "pdf/${base}.pdf"
+            test -s "pdf/${base}.pdf"
+            echo "Verified ${base}.pdf: ${pages} page(s), $(stat -c%s "pdf/${base}.pdf") bytes"
           done
 
       - name: Commit generated PDFs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdf/
+          git add -A pdf/
           if git diff --cached --quiet; then
             echo "No PDF changes to commit."
           else
-            git commit -m "Build spin-correlation PDF reports"
+            git commit -m "Rebuild verified spin-correlation PDF reports"
             git push
           fi
