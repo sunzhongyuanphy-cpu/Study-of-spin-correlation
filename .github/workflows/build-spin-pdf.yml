@@ -1,0 +1,47 @@
+name: Build spin-correlation PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tex/spin_correlation_*.tex'
+      - '.github/workflows/build-spin-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX reports
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: spin_correlation_*.tex
+          working_directory: tex
+          latexmk_use_xelatex: false
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Move PDFs into pdf directory
+        run: |
+          mkdir -p pdf
+          for f in tex/spin_correlation_*.pdf; do
+            [ -e "$f" ] || continue
+            mv "$f" "pdf/$(basename "$f")"
+          done
+
+      - name: Commit generated PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pdf/
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit."
+          else
+            git commit -m "Build spin-correlation PDF reports"
+            git push
+          fi
