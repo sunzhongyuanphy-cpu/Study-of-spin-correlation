@@ -14,6 +14,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,16 +22,17 @@ jobs:
       - name: Install LaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-science
 
       - name: Compile all spin-correlation reports
         run: |
-          mkdir -p pdf
+          mkdir -p pdf build
           for f in tex/spin_correlation_*.tex; do
             [ -e "$f" ] || continue
-            latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=pdf "$f"
+            base=$(basename "$f" .tex)
+            latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=build "$f"
+            cp "build/${base}.pdf" "pdf/${base}.pdf"
           done
-          rm -f pdf/*.aux pdf/*.fdb_latexmk pdf/*.fls pdf/*.log pdf/*.out pdf/*.toc
 
       - name: Commit generated PDFs
         run: |
