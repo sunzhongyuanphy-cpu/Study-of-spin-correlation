@@ -1,0 +1,270 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{amsmath,amssymb,bm,mathtools,physics,microtype,booktabs,enumitem,hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ssb}{s\bar s}
+\newcommand{\LLb}{\Lambda\bar\Lambda}
+
+\title{\textbf{Daily Research Progress Report -- 22 August 2026}\\
+Toward a microscopic dynamical theory of $s\bar s\to\Lambda\bar\Lambda$ spin correlations}
+\author{Spin-correlation dynamics project}
+\date{22 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The main advance of 22 August is an exact selection rule for the scalar two-spin observable measured in the STAR $\Lambda\bar\Lambda$ analysis. Starting from the most general bilinear two-spin Hamiltonian, we derive the complete coherent equation of motion for the correlation tensor $C_{ij}$. We then prove that common spin precession and any exchange-symmetric bilinear interaction preserve $\Tr C=\langle\bm\sigma_1\cdot\bm\sigma_2\rangle$. Therefore the experimentally observed loss of scalar correlation cannot be explained by such coherent dynamics alone. A reduction of the scalar requires singlet--triplet conversion driven by relative spin fields, exchange-antisymmetric interactions, or genuinely dissipative/collisional terms. This sharply narrows the target of the future two-particle Wigner/Kadanoff--Baym derivation.
+\end{abstract}
+
+\section{Physical objective and observable}
+We seek a dynamical chain
+\begin{equation}
+\rho_{s\bar s}^{\rm source}\longrightarrow \rho_{s\bar s}(t)
+\longrightarrow \rho_{\Lambda\bar\Lambda}^{\rm obs}
+\end{equation}
+that connects the initial strange-quark pair to the final hyperon pair. The two-spin density matrix is parameterized as
+\begin{equation}
+\rho=\frac14\left[\Id\otimes\Id+P_i\sigma_i\otimes\Id+\bar P_j\Id\otimes\sigma_j+C_{ij}\sigma_i\otimes\sigma_j\right].
+\end{equation}
+The scalar measured after angular averaging is
+\begin{equation}
+\boxed{P_{\Lambda\bar\Lambda}=\frac13\Tr C=\frac13\langle\bm\sigma_1\cdot\bm\sigma_2\rangle.}
+\end{equation}
+The STAR short-range central value is approximately
+\begin{equation}
+P_{\Lambda\bar\Lambda}=0.181\pm0.035_{\rm stat}\pm0.022_{\rm sys},
+\end{equation}
+with a substantial reduction at larger pair separation.
+
+\section{Initial ${}^3P_0$ source}
+For vacuum-like $J^{PC}=0^{++}$ pair creation, the natural state is ${}^3P_0$,
+\begin{equation}
+L=1,\qquad S=1,\qquad J=0.
+\end{equation}
+The coupled state is
+\begin{equation}
+|00\rangle=\frac1{\sqrt3}\sum_{m=-1}^{1}(-1)^{1-m}|1m\rangle_L|1,-m\rangle_S.
+\end{equation}
+If orbital information is completely traced out,
+\begin{align}
+\rho_S&=\Tr_L|00\rangle\langle00|\\
+&=\frac13\sum_{m=-1}^{1}|1m\rangle\langle1m|\\
+&=\frac13P_{S=1}.
+\end{align}
+Using
+\begin{equation}
+P_{S=1}=\frac{3\Id+\bm\sigma_1\cdot\bm\sigma_2}{4},
+\end{equation}
+we obtain
+\begin{equation}
+\rho_S=\frac14\left[\Id\otimes\Id+\frac13\sum_i\sigma_i\otimes\sigma_i\right],
+\end{equation}
+so
+\begin{equation}
+C_{ij}^{(0)}=\frac13\delta_{ij},\qquad P_{s\bar s}^{(0)}=\frac13.
+\end{equation}
+The distinction between this orbitally averaged state and a momentum-conditioned local state must be retained in a future event-by-event treatment.
+
+\section{Exact coherent evolution of the correlation tensor}
+Consider the most general Hermitian bilinear Hamiltonian
+\begin{equation}
+H=\frac12\Omega_a\sigma_a\otimes\Id+\frac12\bar\Omega_b\Id\otimes\sigma_b+\frac14J_{ab}\sigma_a\otimes\sigma_b.
+\end{equation}
+The density operator satisfies
+\begin{equation}
+\dot\rho=-i[H,\rho].
+\end{equation}
+For
+\begin{equation}
+C_{ij}=\Tr\left(\rho\,\sigma_i\otimes\sigma_j\right),
+\end{equation}
+we have
+\begin{align}
+\dot C_{ij}&=-i\Tr\left([H,\rho]\,\sigma_i\otimes\sigma_j\right)\\
+&=-i\left\langle[\sigma_i\otimes\sigma_j,H]\right\rangle,
+\end{align}
+where cyclicity of the trace was used.
+
+For the first local term,
+\begin{align}
+-i\left[\sigma_i\otimes\sigma_j,\frac12\Omega_a\sigma_a\otimes\Id\right]
+&=-i\frac{\Omega_a}{2}[\sigma_i,\sigma_a]\otimes\sigma_j\\
+&=\Omega_a\epsilon_{iak}\sigma_k\otimes\sigma_j,
+\end{align}
+using $[\sigma_i,\sigma_a]=2i\epsilon_{iak}\sigma_k$. Therefore
+\begin{equation}
+\left.\dot C_{ij}\right|_1=\epsilon_{iak}\Omega_aC_{kj}.
+\end{equation}
+Similarly,
+\begin{equation}
+\left.\dot C_{ij}\right|_2=\epsilon_{jbl}\bar\Omega_bC_{il}.
+\end{equation}
+
+For the interaction term we use
+\begin{equation}
+[A\otimes B,C\otimes D]=\frac12[A,C]\otimes\{B,D\}+\frac12\{A,C\}\otimes[B,D].
+\end{equation}
+Together with $\{\sigma_i,\sigma_a\}=2\delta_{ia}\Id$ this yields
+\begin{equation}
+[\sigma_i\otimes\sigma_j,\sigma_a\otimes\sigma_b]
+=2i\epsilon_{iak}\delta_{jb}\sigma_k\otimes\Id+2i\delta_{ia}\epsilon_{jbl}\Id\otimes\sigma_l.
+\end{equation}
+Hence
+\begin{equation}
+\left.\dot C_{ij}\right|_{12}=\frac12\epsilon_{iak}J_{aj}P_k+\frac12\epsilon_{jbl}J_{ib}\bar P_l.
+\end{equation}
+Combining all terms gives the exact coherent tensor equation
+\begin{equation}
+\boxed{\dot C_{ij}=\epsilon_{iak}\Omega_aC_{kj}+\epsilon_{jbl}\bar\Omega_bC_{il}+\frac12\epsilon_{iak}J_{aj}P_k+\frac12\epsilon_{jbl}J_{ib}\bar P_l.}
+\end{equation}
+No Markov, weak-coupling, or phenomenological channel approximation has entered this derivation.
+
+\section{Protection theorem for the STAR scalar}
+Define
+\begin{equation}
+Q\equiv\bm\sigma_1\cdot\bm\sigma_2=\sum_i\sigma_i\otimes\sigma_i,
+\qquad 3P=\langle Q\rangle.
+\end{equation}
+The spin-swap operator is
+\begin{equation}
+\mathsf P_{12}=\frac12(\Id+Q),
+\end{equation}
+so $Q=2\mathsf P_{12}-\Id$. If the Hamiltonian is invariant under spin exchange,
+\begin{equation}
+\mathsf P_{12}H\mathsf P_{12}=H,
+\end{equation}
+then
+\begin{equation}
+[H,\mathsf P_{12}]=0\quad\Rightarrow\quad[H,Q]=0.
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{\frac{d}{dt}\langle Q\rangle=0,\qquad \frac{d}{dt}\Tr C=0.}
+\end{equation}
+For the Hamiltonian above, exchange invariance requires
+\begin{equation}
+\boxed{\bm\Omega=\bar{\bm\Omega},\qquad J_{ij}=J_{ji}.}
+\end{equation}
+Thus common precession, isotropic exchange $J\bm S_1\cdot\bm S_2$, and any symmetric anisotropic bilinear coupling may rotate or redistribute tensor components but cannot alter the scalar $P$.
+
+\section{Singlet probability and the microscopic interpretation}
+The singlet projector is
+\begin{equation}
+\Pi_S=|S\rangle\langle S|=\frac14\left(\Id-\bm\sigma_1\cdot\bm\sigma_2\right).
+\end{equation}
+Hence
+\begin{align}
+p_S&=\Tr(\rho\Pi_S)\\
+&=\frac14\left[1-\langle Q\rangle\right]\\
+&=\boxed{\frac{1-3P}{4}}.
+\end{align}
+A pure triplet source has $p_S(0)=0$ and $P(0)=1/3$. Thus a decrease of the scalar corresponds to increasing singlet weight. Applied only as a hadron-level diagnostic to the STAR central value,
+\begin{equation}
+p_S^{\rm obs}=\frac{1-3(0.181)}4\simeq0.114.
+\end{equation}
+This does not yet equal the primordial partonic singlet probability because hadronization and feed-down have not been unfolded.
+
+\section{Coherent mechanisms that can change the scalar}
+Write
+\begin{equation}
+\bm\Omega_c=\frac{\bm\Omega+\bar{\bm\Omega}}2,
+\qquad
+\delta\bm\Omega=\frac{\bm\Omega-\bar{\bm\Omega}}2.
+\end{equation}
+Then
+\begin{equation}
+H_{\rm local}=\bm\Omega_c\cdot(\bm S_1+\bm S_2)+\delta\bm\Omega\cdot(\bm S_1-\bm S_2).
+\end{equation}
+The first term is exchange symmetric; the second is antisymmetric. For a differential field along $z$,
+\begin{equation}
+H_\delta=\frac{\delta\Omega_z}{2}(\sigma_{1z}-\sigma_{2z}).
+\end{equation}
+With
+\begin{equation}
+|T_0\rangle=\frac{|\uparrow\downarrow\rangle+|\downarrow\uparrow\rangle}{\sqrt2},
+\qquad
+|S\rangle=\frac{|\uparrow\downarrow\rangle-|\downarrow\uparrow\rangle}{\sqrt2},
+\end{equation}
+one obtains explicitly
+\begin{equation}
+(\sigma_{1z}-\sigma_{2z})|T_0\rangle=2|S\rangle.
+\end{equation}
+Thus $|T_0\rangle$ and $|S\rangle$ mix. Starting from $|T_0\rangle$,
+\begin{equation}
+p_S(t)=\sin^2(\delta\Omega_z t),
+\end{equation}
+and therefore
+\begin{equation}
+\boxed{P(t)=\frac13\left[1-4\sin^2(\delta\Omega_z t)\right].}
+\end{equation}
+
+Likewise, the antisymmetric part of $J_{ij}$,
+\begin{equation}
+J_{ij}^{(A)}=\frac12(J_{ij}-J_{ji})=\epsilon_{ijk}D_k,
+\end{equation}
+produces
+\begin{equation}
+H_A=\bm D\cdot(\bm S_1\times\bm S_2),
+\end{equation}
+which is exchange odd and can also drive singlet--triplet conversion.
+
+\section{Resulting kinetic target}
+The scalar problem should therefore be reformulated as singlet--triplet kinetics,
+\begin{equation}
+\boxed{\dot p_S=\Gamma_{T\to S}p_T-\Gamma_{S\to T}p_S+S_S^{\rm prod},}
+\end{equation}
+with $p_T=1-p_S$ if no other spin-sector leakage is retained. Since $P=(1-4p_S)/3$,
+\begin{equation}
+\dot P=-\frac43\left[\Gamma_{T\to S}(1-p_S)-\Gamma_{S\to T}p_S+S_S^{\rm prod}\right].
+\end{equation}
+The central microscopic task is to derive $\Gamma_{T\to S}$ and $\Gamma_{S\to T}$ from the two-particle QCD collision kernel rather than introduce a generic damping constant.
+
+\section{Connection to relativistic quantum kinetic theory}
+A gauge-covariant one-body Wigner function may be decomposed as
+\begin{equation}
+W=\frac14\left[\mathcal F+i\gamma^5\mathcal P+\gamma^\mu\mathcal V_\mu+\gamma^\mu\gamma^5\mathcal A_\mu+\frac12\sigma^{\mu\nu}\mathcal S_{\mu\nu}\right],
+\end{equation}
+where $\mathcal A^\mu$ carries spin information. Existing quantum kinetic theory derives spin transport, diffusion, and color-field-induced source terms for massive quarks. For the present problem the required object is the two-particle correlator
+\begin{equation}
+W^{(2)}(1,2)=\left\langle\widehat W_s(1)\otimes\widehat W_{\bar s}(2)\right\rangle,
+\end{equation}
+and specifically the connected axial--axial tensor
+\begin{equation}
+\mathcal C^{\mu\nu}(1,2)=\left\langle\mathcal A_s^\mu(1)\mathcal A_{\bar s}^\nu(2)\right\rangle_c.
+\end{equation}
+The next derivation should project the two-particle Kadanoff--Baym collision term onto
+\begin{equation}
+\Pi_S=\frac14(\Id-\bm\sigma_1\cdot\bm\sigma_2),
+\qquad
+\Pi_T=\Id-\Pi_S,
+\end{equation}
+with the immediate targets
+\begin{equation}
+\Gamma_{T\to S}\sim\Tr\left[\Pi_S\,\mathcal C_{\rm coll}[\Pi_T]\right],
+\qquad
+\Gamma_{S\to T}\sim\Tr\left[\Pi_T\,\mathcal C_{\rm coll}[\Pi_S]\right].
+\end{equation}
+
+\section{Hadronization and feed-down}
+Even after the partonic kinetics is known, the observable tensor requires a channel-resolved transfer map,
+\begin{equation}
+C_{ij}^{\Lambda\bar\Lambda}=\sum_{ab}R_{ab}(A_a)_{ik}C_{kl}^{s\bar s,(ab)}(\bar A_b)_{jl}.
+\end{equation}
+Therefore feed-down should not be represented by a single universal scalar dilution if different hyperon channels have different tensor transfer coefficients.
+
+\section{Conclusions and next steps}
+The strongest conclusion of 22 August is not simply that the correlation ``decoheres.'' Instead, the STAR scalar is protected against a broad class of coherent exchange-symmetric dynamics. The relevant microscopic question is which QCD processes create relative spin fields, exchange-antisymmetric couplings, or dissipative collision kernels that transfer probability between triplet and singlet sectors. The next priority is a two-particle Wigner/Kadanoff--Baym derivation of the singlet--triplet transition rates, followed by a source-resolved hadronization/feed-down map into $\Lambda\bar\Lambda$ observables.
+
+\section*{References}
+\begin{enumerate}[leftmargin=1.5em]
+\item STAR Collaboration, ``Measuring spin correlation between quarks during QCD confinement,'' Nature \textbf{650}, 65--71 (2026).
+\item D.-L. Yang, ``Quantum kinetic theory for spin transport of quarks with background chromo-electromagnetic fields,'' JHEP \textbf{06} (2022) 140, arXiv:2112.14392.
+\item A. Kumar, B. M\"uller and D.-L. Yang, ``Spin polarization and correlation of quarks from glasma,'' Phys. Rev. D \textbf{107}, 076025 (2023), arXiv:2212.13354.
+\item J. Barata, I. Cunt\'in, E. Rico and B. Wu, ``$\Lambda\bar\Lambda$ spin correlations in high-energy collisions from quantum channels: an open quantum system view of hadronization,'' arXiv:2606.30737 (2026).
+\end{enumerate}
+
+\end{document}
