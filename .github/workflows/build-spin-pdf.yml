@@ -18,21 +18,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX reports
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: spin_correlation_*.tex
-          working_directory: tex
-          latexmk_use_xelatex: false
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended
 
-      - name: Move PDFs into pdf directory
+      - name: Compile all spin-correlation reports
         run: |
           mkdir -p pdf
-          for f in tex/spin_correlation_*.pdf; do
+          for f in tex/spin_correlation_*.tex; do
             [ -e "$f" ] || continue
-            mv "$f" "pdf/$(basename "$f")"
+            latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=pdf "$f"
           done
+          rm -f pdf/*.aux pdf/*.fdb_latexmk pdf/*.fls pdf/*.log pdf/*.out pdf/*.toc
 
       - name: Commit generated PDFs
         run: |
