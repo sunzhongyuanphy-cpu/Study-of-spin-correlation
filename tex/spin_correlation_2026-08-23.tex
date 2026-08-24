@@ -1,37 +1,1426 @@
 \documentclass[11pt]{article}
-\usepackage[a4paper,margin=22mm]{geometry}
-\usepackage{amsmath,amssymb,bm,mathtools,booktabs,hyperref,microtype}
+\usepackage[a4paper,margin=20mm]{geometry}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{physics}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{slashed}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
-\newcommand{\Lb}{\bar\Lambda}
-\title{Daily Research Report: Dynamical Study of $s\bar s\to\Lambda\bar\Lambda$ Spin Correlations}
-\author{Research synthesis -- 23 August 2026}\date{}
-\begin{document}\maketitle
-\begin{abstract}This report reconciles today's quantum-dynamical study of strange-quark pair spin correlations. The internally consistent picture is: the observable is a connected two-body spin tensor; relativistic axial tensors require momentum-dependent spin-tetrad projection; independent one-body spin relaxation damps the pair mode with the sum of leg rates; stochastic fields relax the isotropic scalar only through the relative field; finite-memory noise gives a non-Markovian kernel; and hadronization, feed-down and same-source dilution are indispensable.\end{abstract}
-\section{Physical observable}Define $C_{ab}=\langle\sigma_{1a}\sigma_{2b}\rangle-\langle\sigma_{1a}\rangle\langle\sigma_{2b}\rangle$ and $P=\delta_{ab}C_{ab}/3$. For vanishing one-body polarization, $P=\langle\bm\sigma_1\cdot\bm\sigma_2\rangle/3$. STAR reports $P_{\Lambda\bar\Lambda}=0.181\pm0.035_{\rm stat}\pm0.022_{\rm sys}$ for short-range pairs and long-range consistency with zero; CMS at LHC energies finds no statistically significant $\Lambda\bar\Lambda$ deviation from zero.
-\section{Density operator and BBGKY}Write $\rho_{12}=\frac14[I\otimes I+p_a\sigma_a\otimes I+\bar p_bI\otimes\sigma_b+C^{\rm full}_{ab}\sigma_a\otimes\sigma_b]$. Using $\mathrm{Tr}(\sigma_a\sigma_b)=2\delta_{ab}$ recovers each coefficient and $C_{ab}=C^{\rm full}_{ab}-p_a\bar p_b$. From $i\partial_t\rho_N=[H_N,\rho_N]$, tracing spectators gives $i\partial_t\rho_{12}=[H_{12},\rho_{12}]+\mathrm{Tr}_3([V_{13}+V_{23},\rho_{123}])$, showing that closure requires a cluster/self-energy approximation.
-\section{Relativistic spin projection}For $u\bar u=\frac12(\not p+m)(1+\gamma^5\not S)$, gamma traces give $\bar u\gamma^\mu\gamma^5u=2mS^\mu$. Introduce $e_a\cdot p=0$, $e_a\cdot e_b=-\delta_{ab}$ and $\mathcal A^{\mu\nu}=e_{1a}^\mu e_{2b}^\nu C_{ab}$. Hence $C_{ab}=e_{1a\mu}e_{2b\nu}\mathcal A^{\mu\nu}$ and
-\[\boxed{P=\frac13\sum_a e_{1a\mu}e_{2a\nu}\mathcal A^{\mu\nu}.}\]
-This corrects a naive lab-frame spatial trace.
-\section{Independent relaxation}For $\mathcal L_m\rho=\frac{\gamma_m}{4}\sum_a(\sigma_{ma}\rho\sigma_{ma}-\rho)$ and $\sum_a\sigma_a\sigma_i\sigma_a=-\sigma_i$, $\mathcal L_m^\dagger\sigma_{mi}=-\gamma_m\sigma_{mi}$. Therefore
-\[\boxed{\dot P=-(\gamma_s+\gamma_{\bar s})P,\quad P(t_h)=P(t_0)e^{-\int(\gamma_s+\gamma_{\bar s})dt}.}\]
-Perturbative strange-quark spin equilibration estimates are much slower than heavy-ion dynamical times.
-\section{Relative stochastic fields}Let $H_I=\frac12(\bm\xi_1\cdot\bm\sigma_1+\bm\xi_2\cdot\bm\sigma_2)$. With $\bar{\bm\xi}=(\bm\xi_1+\bm\xi_2)/2$ and $\bm\xi_-=\bm\xi_1-\bm\xi_2$, the common part couples to $\bm\sigma_1+\bm\sigma_2$. For $Q=\bm\sigma_1\cdot\bm\sigma_2$, $[Q,\bm\sigma_1+\bm\sigma_2]=0$, so perfectly common noise cannot change the scalar correlation. For $\langle\xi_m^a(t)\xi_n^b(t')\rangle=2D_{mn}\delta^{ab}\delta(t-t')$,
-\[\dot\rho=-\frac14\sum_{mn,a}D_{mn}[\sigma_m^a,[\sigma_n^a,\rho]],\]
-and Pauli algebra yields
-\[\dot C_{ij}=-2(D_{11}+D_{22})C_{ij}+2D_{12}(\delta_{ij}C_{kk}-C_{ji}).\]
-For $C_{ij}=P\delta_{ij}$ and equivalent trajectories,
-\[\boxed{\Gamma_{\rm rel}(r)=4[D(0)-D(r)],\qquad\dot P=-\Gamma_{\rm rel}P.}\]
-\section{Finite memory}With $\langle\xi_m^a(t)\xi_n^b(t-\tau)\rangle=\delta^{ab}K_{mn}(\tau)$, second-order TCL gives
-\[\boxed{\dot P(t)=-2P(t)\int_0^t d\tau[K_{11}+K_{22}-K_{12}-K_{21}](\tau).}\]
-For equivalent legs this is $\dot P=-4P\int_0^t(K_0-K_r)d\tau$. If $K_0-K_r=K_\Delta e^{-\tau/\tau_c}$,
-\[P(t)=P(0)e^{-4K_\Delta\tau_c[t-\tau_c(1-e^{-t/\tau_c})]}.\]
-Thus short-time decay is quadratic and long-time decay becomes exponential.
-\section{Gauge-covariant QCD interpretation}A candidate microscopic kernel is $\mathcal K_{12}^{ij}\sim\kappa_s^2\langle B^{ai}(x_1)\mathcal U^{ab}_{C_{12}}B^{bj}(x_2)\rangle$. The Wilson line is required for gauge covariance. The coefficient $\kappa_s$ must be matched from relativistic axial kinetic theory; importing a heavy-quark Pauli coefficient is not justified.
-\section{Kadanoff--Baym/Wigner route}Dyson equations imply $(i\not\partial-m)G^<=\Sigma^R\circ G^<+\Sigma^<\circ G^A$ and its right-acting partner. With $X=(x_1+x_2)/2$, $s=x_1-x_2$, $G^<(X,p)=\int d^4s e^{ip\cdot s}G^<(X+s/2,X-s/2)$. Convolutions become Moyal products $A\star B=A\exp[\frac i2(\overleftarrow\partial_X\cdot\overrightarrow\partial_p-\overleftarrow\partial_p\cdot\overrightarrow\partial_X)]B$. Decompose $W=\frac14(\mathcal F+i\gamma^5\mathcal P+\gamma^\mu\mathcal V_\mu+\gamma^\mu\gamma^5\mathcal A_\mu+\frac12\sigma^{\mu\nu}\mathcal S_{\mu\nu})$. The pair problem requires the connected four-point function, double Wigner transform, axial--axial projection, and finally the tetrad contraction. The target structure is $\mathcal DP=\mathcal I_{\rm rel}[P]+\mathcal S_{\rm pair}+\mathcal R_{\rm basis}$.
-\section{Hadronization}A minimal map is $C^{\Lambda\bar\Lambda}_{ij}=\sum_{ab}T^{(\Lambda)}_{ia}\bar T^{(\bar\Lambda)}_{jb}C^{s\bar s}_{ab}+C^{\rm conn,had}_{ij}$. With feed-down and source mixing,
-\[\boxed{P_{\Lambda\bar\Lambda}^{\rm obs}=D_{\rm had}f_{\rm same}P_{s\bar s}^{\rm src}S_{\rm rel}+P_{\rm conn}^{\rm had/resc}.}\]
-This factorization is phenomenological and can fail if spin and kinematics are nonfactorizable.
-\section{Reconciled conclusions and next step}The surviving conclusions are: connected two-body tensors are essential; tetrad projection is mandatory; independent relaxation rates add; common-mode noise cancels exactly for the scalar; relative-field damping gives the white-noise and finite-memory limits; perturbative spin flips appear too slow to dominate; and hadronization/feed-down/source mixing are indispensable. The highest-priority next step is a gauge-covariant connected four-point Kadanoff--Baym derivation with explicit color/spinor indices and an axial--axial projection, followed by quantitative estimates of same-source fractions at RHIC and LHC energies.
-\begin{thebibliography}{6}\bibitem{STAR} STAR Collaboration, Nature 650 (2026) 65, arXiv:2506.05499.\bibitem{CMS} CMS Collaboration, CMS-PAS-HIN-26-002 (17 May 2026).\bibitem{KRR} J.I. Kapusta, E. Rrapaj, S. Rudaz, Phys. Rev. C 101, 024907 (2020).\bibitem{HHY} K. Hattori, Y. Hidaka, D.-L. Yang, Phys. Rev. D 100, 096011 (2019).\bibitem{YHH} D.-L. Yang, K. Hattori, Y. Hidaka, arXiv:2002.02612.\bibitem{GL} J.-H. Gao, Z.-T. Liang, arXiv:1902.06510.\end{thebibliography}\end{document}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.7em}{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\Trc}{\operatorname{Tr}}
+\newcommand{\ssb}{s\bar s}
+\newcommand{\LLb}{\Lambda\bar\Lambda}
+\newcommand{\eps}{\epsilon}
+\newcommand{\Ccal}{\mathcal C}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\Scal}{\mathcal S}
+\newcommand{\Kcal}{\mathcal K}
+
+\title{\textbf{Daily Research Progress Report -- 23 August 2026}\\
+Microscopic transport of $s\bar s$ spin correlations toward $\Lambda\bar\Lambda$ observables}
+\author{Detailed reconstruction of the full-day research program}
+\date{23 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This report reconstructs and expands the complete set of technical ideas developed on 23 August 2026 in the ongoing program to build a microscopic theory for the evolution of an initially produced strange-quark pair into the measured $\Lambda\bar\Lambda$ spin correlation. The central theme of the day was to replace a purely phenomenological ``decoherence factor'' by a hierarchy of increasingly microscopic descriptions. We begin with the exact two-spin density matrix and its connected correlation tensor, derive the two-body BBGKY equation, and show explicitly where closure approximations enter. We then derive the relativistically correct projection of the axial Wigner tensor onto rest-frame spin components, demonstrating why a naive spatial trace in the laboratory frame is not generally the measured scalar. For Markovian one-body relaxation we prove that the two-spin mode decays with the sum of the two leg rates. For stochastic background fields we derive, rather than assume, the cancellation of common-mode fluctuations and obtain the relative-noise rate from a double-commutator master equation. We extend this result to finite-memory noise with a second-order time-convolutionless kernel and show the crossover from quadratic short-time decay to exponential long-time decay. We then construct the gauge-covariant QCD interpretation in terms of Wilson-line-connected field-strength correlators, clarify which parts of this language are controlled and which remain model dependent for strange quarks, and connect the result to the Kadanoff--Baym/Wigner program. The latter is developed in detail through the Wigner transform, Moyal product, Clifford decomposition, and the need for a connected four-point function for pair spin correlations. Finally we discuss source-propagator separation, hadronization and feed-down, positivity constraints, and the qualitatively different STAR and CMS phenomenology. The report ends with a prioritized derivation program for obtaining a genuine QCD singlet-triplet and tensor collision kernel.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Research questions attacked during the day}
+
+The six research sessions on 23 August were not independent topics. They formed a sequence of questions intended to move the project from a hadron-level fit toward a microscopic nonequilibrium-QCD description. The questions can be organized as follows.
+
+\begin{enumerate}[leftmargin=1.7em]
+\item What is the minimal density-matrix object that contains the spin information measured by STAR and CMS, and when must one use the \emph{connected} rather than the full two-spin tensor?
+\item Starting from an exact many-body density operator, what is the exact equation of motion for the reduced $s\bar s$ density matrix, and where does a kinetic closure enter?
+\item How should relativistic quark spin be projected from the axial Wigner function to the three-component spin tensor that is eventually mapped to hyperon decay angles?
+\item If each strange constituent undergoes independent spin relaxation, how does the pair correlation decay? In particular, do relaxation rates add, multiply, or interfere?
+\item For a common fluctuating color environment, which part of the environmental field destroys the scalar correlation? Can perfectly common noise decohere the STAR scalar?
+\item How is the white-noise result modified when the environment has a finite memory time?
+\item What is the gauge-covariant QCD object underlying the effective cross-noise kernel, and why is a Wilson line required?
+\item How can the phenomenological master-equation language be embedded in a Kadanoff--Baym/Wigner derivation without double counting the source and the subsequent medium evolution?
+\item What pieces of hadronization, feed-down, and source mixing remain indispensable before a partonic calculation can be compared with the observed $\Lambda\bar\Lambda$ quantity?
+\item What can already be learned from the qualitative difference between the STAR result at $\sqrt{s}=200$ GeV and the CMS result at LHC energies?
+\end{enumerate}
+
+The working philosophy throughout this report is to distinguish four levels of statement:
+
+\begin{itemize}[leftmargin=1.5em]
+\item \textbf{Exact identities}, following only from quantum mechanics and definitions;
+\item \textbf{Controlled approximations}, such as a gradient expansion or a weak-coupling/Markov limit;
+\item \textbf{Model assumptions}, for example Gaussian stochastic color fields;
+\item \textbf{Phenomenological factorization ansatze}, useful for fitting data but not yet derived from QCD.
+\end{itemize}
+
+This distinction is essential because the long-term goal is not merely to reproduce one curve but to identify which microscopic QCD structures the data actually constrain.
+
+\section{Experimental target and density-matrix conventions}
+
+\subsection{General two-spin density matrix}
+
+For two spin-$1/2$ degrees of freedom, any $4\times4$ Hermitian density matrix can be expanded in the Pauli basis. Since
+\begin{equation}
+\{\Id,\sigma_x,\sigma_y,\sigma_z\}
+\end{equation}
+forms an orthogonal operator basis for a single qubit, the tensor products form a basis for the two-spin system. We therefore write
+\begin{equation}
+\rho_{12}
+=
+\frac14\left[
+\Id\otimes\Id
++p_i\sigma_i\otimes\Id
++\bar p_j\Id\otimes\sigma_j
++C^{\rm full}_{ij}\sigma_i\otimes\sigma_j
+\right].
+\label{eq:rho_general}
+\end{equation}
+Repeated Cartesian indices are summed.
+
+The factor $1/4$ is fixed by normalization. Indeed,
+\begin{align}
+\Trc\rho_{12}
+&=\frac14\Trc(\Id\otimes\Id)\\
+&=\frac14(2)(2)=1,
+\end{align}
+because every term containing one Pauli matrix has zero trace.
+
+Using
+\begin{equation}
+\Trc(\sigma_i\sigma_j)=2\delta_{ij},
+\end{equation}
+we recover the coefficients directly:
+\begin{align}
+p_i&=\Trc[\rho_{12}(\sigma_i\otimes\Id)],\\
+\bar p_j&=\Trc[\rho_{12}(\Id\otimes\sigma_j)],\\
+C^{\rm full}_{ij}&=\Trc[\rho_{12}(\sigma_i\otimes\sigma_j)].
+\end{align}
+
+\subsection{Full versus connected correlation tensor}
+
+The quantity $C^{\rm full}_{ij}$ contains both genuine pair correlation and the trivial product of one-body polarizations. The connected tensor is
+\begin{equation}
+\boxed{
+C_{ij}
+\equiv
+C^{\rm full}_{ij}-p_i\bar p_j
+=
+\langle\sigma_{1i}\sigma_{2j}\rangle
+-
+\langle\sigma_{1i}\rangle
+\langle\sigma_{2j}\rangle.
+}
+\label{eq:Cconnected}
+\end{equation}
+
+Why is this distinction important? Suppose the two spins are completely uncorrelated,
+\begin{equation}
+\rho_{12}=\rho_1\otimes\rho_2,
+\end{equation}
+with
+\begin{equation}
+\rho_1=\frac12(\Id+p_i\sigma_i),
+\qquad
+\rho_2=\frac12(\Id+\bar p_j\sigma_j).
+\end{equation}
+Then
+\begin{equation}
+C^{\rm full}_{ij}=p_i\bar p_j,
+\end{equation}
+while
+\begin{equation}
+C_{ij}=0.
+\end{equation}
+Thus a theory of pair correlation should propagate the connected object whenever nonzero one-body polarization is possible.
+
+In the STAR $pp$ application, the pair-averaged one-body polarizations are small enough that the full and connected scalar are often numerically close. Nevertheless, the distinction must remain explicit in a general heavy-ion extension where global or local hyperon polarization can be nonzero.
+
+\subsection{Scalar projection}
+
+Define
+\begin{equation}
+Q\equiv\bm\sigma_1\cdot\bm\sigma_2=\sum_{a=1}^{3}\sigma_{1a}\sigma_{2a}.
+\end{equation}
+For vanishing one-body polarizations, the scalar relative-polarization observable can be written
+\begin{equation}
+\boxed{
+P=\frac13\langle Q\rangle
+=\frac13\delta_{ab}C_{ab}.
+}
+\label{eq:Pscalar}
+\end{equation}
+
+For nonzero one-body polarization the connected scalar is instead
+\begin{equation}
+P_{\rm conn}
+=\frac13\delta_{ab}C_{ab}
+=\frac13\left[
+\langle Q\rangle-\bm p\cdot\bar{\bm p}
+\right].
+\end{equation}
+
+The STAR short-range result is
+\begin{equation}
+P_{\Lambda\bar\Lambda}^{\rm STAR}
+=0.181\pm0.035_{\rm stat}\pm0.022_{\rm sys},
+\label{eq:STARnum}
+\end{equation}
+with the signal decreasing strongly at large pair separation. At the LHC, CMS finds no statistically significant $\Lambda\bar\Lambda$ deviation from zero within uncertainties, while same-sign hyperon pairs show negative correlations at small $\Delta R$. These two experimental facts already warn us that the source and/or propagation mechanism is not universal across collision energies.
+
+\section{Exact two-body reduction from the many-body density operator}
+
+\subsection{Many-body equation}
+
+Let the full $N$-body density operator obey
+\begin{equation}
+i\partial_t\rho_N=[H_N,\rho_N].
+\label{eq:vonN}
+\end{equation}
+Take a Hamiltonian with one-body terms $h_i$ and pair interactions $V_{ij}$,
+\begin{equation}
+H_N=\sum_{i=1}^{N}h_i+\frac12\sum_{i\neq j}V_{ij}.
+\end{equation}
+The two-body reduced density operator is
+\begin{equation}
+\rho_{12}
+=\Trc_{3\cdots N}\rho_N.
+\end{equation}
+
+Differentiate and use Eq.~\eqref{eq:vonN}:
+\begin{align}
+i\partial_t\rho_{12}
+&=\Trc_{3\cdots N}[H_N,\rho_N].
+\end{align}
+Terms involving only particles $1$ and $2$ commute through the spectator trace:
+\begin{equation}
+\Trc_{3\cdots N}[h_1+h_2+V_{12},\rho_N]
+=[h_1+h_2+V_{12},\rho_{12}].
+\end{equation}
+
+Terms containing only spectators disappear after the partial trace because of cyclicity within the spectator Hilbert space. The nontrivial terms couple particle $1$ or $2$ to a spectator. For particle $3$, for example,
+\begin{equation}
+\Trc_3[V_{13}+V_{23},\rho_{123}].
+\end{equation}
+Summing the spectators gives the second BBGKY equation,
+\begin{equation}
+\boxed{
+i\partial_t\rho_{12}
+=[h_1+h_2+V_{12},\rho_{12}]
++\sum_{k=3}^{N}\Trc_k[V_{1k}+V_{2k},\rho_{12k}].
+}
+\label{eq:BBGKY2}
+\end{equation}
+
+\subsection{Where the closure problem enters}
+
+Equation~\eqref{eq:BBGKY2} is exact but not closed because it contains the three-body reduced density operator. Write a cluster expansion schematically as
+\begin{equation}
+\rho_{123}
+=\rho_1\rho_2\rho_3
++g_{12}\rho_3+g_{13}\rho_2+g_{23}\rho_1
++g_{123},
+\end{equation}
+where $g_{ij}$ are connected pair correlations and $g_{123}$ is the genuine three-body cumulant.
+
+A molecular-chaos or Born approximation discards $g_{123}$ and approximates the spectator as a bath state. A kinetic equation then emerges only after assumptions about
+
+\begin{enumerate}[leftmargin=1.6em]
+\item the time scale on which bath correlations decay,
+\item whether the bath is weakly perturbed by the pair,
+\item whether memory effects can be neglected,
+\item and how color gauge covariance is maintained.
+\end{enumerate}
+
+This derivation is conceptually useful because it identifies exactly what a phenomenological master equation is replacing: the spectator trace in Eq.~\eqref{eq:BBGKY2}, together with the hierarchy of higher correlations.
+
+\subsection{Equation for the pair tensor}
+
+For any operator $O_{12}$,
+\begin{equation}
+\frac{d}{dt}\langle O_{12}\rangle
+=-i\langle[O_{12},H_{12}]\rangle
+-i\sum_{k\ge3}\Trc_{12k}\left[O_{12}[V_{1k}+V_{2k},\rho_{12k}]\right].
+\end{equation}
+Choosing
+\begin{equation}
+O_{12}=\sigma_i\otimes\sigma_j
+\end{equation}
+shows that the pair spin tensor is coupled to mixed spin-color-space correlations with spectators. This is the microscopic origin of both coherent mean fields and dissipative collision kernels.
+
+\section{Relativistic spin projection from Dirac bilinears}
+
+\subsection{Spin four-vector}
+
+For a positive-energy Dirac spinor with four-momentum $p^\mu$ and spin four-vector $S^\mu$, the covariant spin projector is
+\begin{equation}
+u(p,S)\bar u(p,S)
+=\frac12(\slashed p+m)(1+\gamma^5\slashed S),
+\label{eq:spinprojector}
+\end{equation}
+with
+\begin{equation}
+p\cdot S=0,
+\qquad
+S^2=-1.
+\end{equation}
+
+To verify the axial-vector bilinear, use Eq.~\eqref{eq:spinprojector}:
+\begin{align}
+\bar u\gamma^\mu\gamma^5u
+&=\Trc\left[\gamma^\mu\gamma^5u\bar u\right]\\
+&=\frac12\Trc\left[\gamma^\mu\gamma^5(\slashed p+m)(1+\gamma^5\slashed S)\right].
+\end{align}
+The terms without $S$ vanish because they contain traces with an odd number of gamma matrices or a single $\gamma^5$. The surviving piece is
+\begin{align}
+\frac12\Trc\left[\gamma^\mu\gamma^5(\slashed p+m)\gamma^5\slashed S\right].
+\end{align}
+Using $\gamma^5\slashed p\gamma^5=-\slashed p$ and $\gamma^5m\gamma^5=m$, the term with $\slashed p\slashed S$ contributes a trace of three gamma matrices and vanishes, while
+\begin{align}
+\frac12 m\Trc(\gamma^\mu\slashed S)
+&=\frac12m(4S^\mu)\\
+&=2mS^\mu.
+\end{align}
+Thus
+\begin{equation}
+\boxed{
+\bar u(p,S)\gamma^\mu\gamma^5u(p,S)=2mS^\mu.
+}
+\label{eq:axialbilinear}
+\end{equation}
+
+This identity explains why the axial component of the Wigner function is the natural relativistic carrier of spin information.
+
+\subsection{Momentum-dependent spin tetrad}
+
+A three-component spin vector is not a Lorentz four-vector with three arbitrary spatial components. For each momentum $p^\mu$ choose three spacelike basis vectors $e_a^\mu(p)$ satisfying
+\begin{equation}
+e_a\cdot p=0,
+\qquad
+e_a\cdot e_b=-\delta_{ab}.
+\label{eq:tetrad}
+\end{equation}
+Together with $p^\mu/m$, these form an orthonormal tetrad.
+
+The spin four-vector is expanded as
+\begin{equation}
+S^\mu=s_a e_a^\mu(p).
+\end{equation}
+Because of Eq.~\eqref{eq:tetrad},
+\begin{equation}
+s_a=-e_{a\mu}S^\mu.
+\end{equation}
+The overall sign depends on the metric and basis convention; what matters is that the same convention is used on both legs.
+
+\subsection{Two-particle axial tensor}
+
+Introduce a connected axial--axial tensor in phase space,
+\begin{equation}
+\Ccal^{\mu\nu}(1,2)
+\equiv
+\langle\mathcal A_s^\mu(1)\mathcal A_{\bar s}^\nu(2)\rangle_c.
+\end{equation}
+The three-dimensional spin tensor is obtained by projecting each Lorentz index onto its own momentum-dependent spin basis:
+\begin{equation}
+\boxed{
+C_{ab}(1,2)
+=e_{1a\mu}(p_1)e_{2b\nu}(p_2)\Ccal^{\mu\nu}(1,2),
+}
+\label{eq:tetradprojection}
+\end{equation}
+up to normalization factors associated with the convention used for $\mathcal A^\mu$.
+
+Consequently the scalar is
+\begin{equation}
+\boxed{
+P(1,2)=\frac13\sum_{a=1}^{3}e_{1a\mu}e_{2a\nu}\Ccal^{\mu\nu}(1,2).
+}
+\label{eq:relP}
+\end{equation}
+
+A naive laboratory-frame quantity
+\begin{equation}
+\frac13\sum_{i=x,y,z}\Ccal^{ii}
+\end{equation}
+is not generally equivalent to Eq.~\eqref{eq:relP}, because the physical spin bases depend on $p_1$ and $p_2$. This is a genuine relativistic correction, not a matter of notation.
+
+\section{Independent one-body spin relaxation}
+
+\subsection{Single-spin depolarizing generator}
+
+Consider one spin with an isotropic depolarizing generator
+\begin{equation}
+\Dcal_m\rho
+=\frac{\gamma_m}{4}\sum_{a=1}^{3}
+(\sigma_{ma}\rho\sigma_{ma}-\rho).
+\label{eq:depgen}
+\end{equation}
+We derive its action on a Pauli operator in the Heisenberg picture. The adjoint is
+\begin{equation}
+\Dcal_m^\dagger O
+=\frac{\gamma_m}{4}\sum_a
+(\sigma_{ma}O\sigma_{ma}-O).
+\end{equation}
+For $O=\sigma_{mi}$, use
+\begin{equation}
+\sum_a\sigma_a\sigma_i\sigma_a=-\sigma_i.
+\label{eq:pauliidentity}
+\end{equation}
+To check Eq.~\eqref{eq:pauliidentity}, the term $a=i$ gives $\sigma_i$, while each of the other two Pauli matrices anticommutes with $\sigma_i$ and contributes $-\sigma_i$. Hence
+\begin{equation}
+\sigma_i-\sigma_i-\sigma_i=-\sigma_i.
+\end{equation}
+Therefore
+\begin{align}
+\Dcal_m^\dagger\sigma_{mi}
+&=\frac{\gamma_m}{4}\left[-\sigma_{mi}-3\sigma_{mi}\right]\\
+&=-\gamma_m\sigma_{mi}.
+\end{align}
+So the one-body polarization satisfies
+\begin{equation}
+\dot p_i=-\gamma_m p_i.
+\end{equation}
+
+\subsection{Two-spin tensor under independent channels}
+
+Let
+\begin{equation}
+\dot\rho=(\Dcal_1+\Dcal_2)\rho.
+\end{equation}
+For the product operator $\sigma_i\otimes\sigma_j$,
+\begin{align}
+(\Dcal_1^\dagger+\Dcal_2^\dagger)(\sigma_i\otimes\sigma_j)
+&=(-\gamma_1\sigma_i)\otimes\sigma_j
++\sigma_i\otimes(-\gamma_2\sigma_j)\\
+&=-(\gamma_1+\gamma_2)\sigma_i\otimes\sigma_j.
+\end{align}
+Hence
+\begin{equation}
+\boxed{
+\dot C_{ij}=-(\gamma_s+\gamma_{\bar s})C_{ij}
+}
+\label{eq:indepC}
+\end{equation}
+when connected one-body terms are treated consistently.
+
+For time-dependent rates,
+\begin{equation}
+\boxed{
+C_{ij}(t_h)
+=C_{ij}(t_0)
+\exp\left[-\int_{t_0}^{t_h}dt\,(\gamma_s+\gamma_{\bar s})\right].
+}
+\label{eq:indepSolution}
+\end{equation}
+The scalar obeys the same multiplicative factor.
+
+This provides a useful consistency rule: if the two legs lose spin information independently, their exponents add. A phenomenological formula using only one leg's rate would undercount the pair damping by a factor of two in the symmetric case.
+
+\subsection{Interpretation of perturbative strange-quark spin equilibration}
+
+Perturbative estimates of strange-quark spin equilibration in a weakly coupled rotating QGP find times much longer than typical heavy-ion evolution times. This does not prove that spin correlations are frozen during confinement, because the STAR phenomenon occurs in a nonperturbative hadronization regime rather than a weakly coupled thermal QGP. It does, however, imply that ordinary perturbative helicity/spin-flip scattering is unlikely to be the dominant mechanism responsible for a rapid loss of the pair correlation.
+
+\section{Common and relative stochastic fields}
+
+\subsection{Hamiltonian decomposition}
+
+Model unresolved spin-dependent environmental fields by
+\begin{equation}
+H_I(t)
+=\frac12\left[
+\bm\xi_1(t)\cdot\bm\sigma_1
++\bm\xi_2(t)\cdot\bm\sigma_2
+\right].
+\label{eq:stochH}
+\end{equation}
+Define the common and relative fields
+\begin{equation}
+\bar{\bm\xi}
+=\frac{\bm\xi_1+\bm\xi_2}{2},
+\qquad
+\bm\xi_-
+=\bm\xi_1-\bm\xi_2.
+\end{equation}
+Then
+\begin{equation}
+H_I
+=\frac12\bar{\bm\xi}\cdot(\bm\sigma_1+\bm\sigma_2)
++\frac14\bm\xi_-\cdot(\bm\sigma_1-\bm\sigma_2).
+\label{eq:commonrelative}
+\end{equation}
+
+\subsection{Exact cancellation of common-mode precession}
+
+Recall
+\begin{equation}
+Q=\sum_i\sigma_{1i}\sigma_{2i}.
+\end{equation}
+We compute
+\begin{align}
+[Q,\sigma_{1a}]
+&=\sum_i[\sigma_{1i},\sigma_{1a}]\sigma_{2i}\\
+&=2i\sum_{ik}\eps_{iak}\sigma_{1k}\sigma_{2i},
+\end{align}
+and similarly
+\begin{align}
+[Q,\sigma_{2a}]
+&=2i\sum_{ik}\eps_{iak}\sigma_{1i}\sigma_{2k}.
+\end{align}
+Rename $i\leftrightarrow k$ in the second term:
+\begin{equation}
+[Q,\sigma_{2a}]
+=2i\sum_{ik}\eps_{kai}\sigma_{1k}\sigma_{2i}.
+\end{equation}
+Because $\eps_{kai}=-\eps_{iak}$,
+\begin{equation}
+[Q,\sigma_{2a}]=-[Q,\sigma_{1a}].
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{
+[Q,\sigma_{1a}+\sigma_{2a}]=0.
+}
+\label{eq:commoncancel}
+\end{equation}
+
+Equation~\eqref{eq:commoncancel} is exact. A perfectly common field generates a collective $SU(2)$ rotation of the pair and leaves $Q$ invariant. Thus the scalar correlation is not sensitive to the magnitude of common spin precession; it is sensitive to the difference between what the two constituents experience.
+
+This is one of the most robust results in the whole research program.
+
+\section{White-noise limit and the relative-noise damping rate}
+
+\subsection{Gaussian noise correlator}
+
+Assume zero-mean Gaussian noise
+\begin{equation}
+\langle\xi_m^a(t)\rangle=0,
+\end{equation}
+with
+\begin{equation}
+\langle\xi_m^a(t)\xi_n^b(t')\rangle
+=2D_{mn}\delta^{ab}\delta(t-t').
+\label{eq:whitenoise}
+\end{equation}
+Here $m,n\in\{1,2\}$ label the two particles. Positivity of the covariance matrix requires
+\begin{equation}
+D_{11}\ge0,
+\qquad
+D_{22}\ge0,
+\qquad
+D_{12}^2\le D_{11}D_{22}.
+\label{eq:Dpositive}
+\end{equation}
+
+For Hermitian classical Gaussian noise, averaging the stochastic unitary evolution gives the double-commutator master equation
+\begin{equation}
+\boxed{
+\dot\rho
+=-\frac14\sum_{mn,a}D_{mn}
+[\sigma_m^a,[\sigma_n^a,\rho]].
+}
+\label{eq:doublecomm}
+\end{equation}
+The overall normalization follows from the $1/2$ in Eq.~\eqref{eq:stochH} and the convention in Eq.~\eqref{eq:whitenoise}.
+
+\subsection{Equation for the full tensor}
+\begin{equation}
+O_{ij}=\sigma_{1i}\sigma_{2j}.
+\end{equation}
+Using the adjoint form,
+\begin{equation}
+\frac{d}{dt}\langle O_{ij}\rangle
+=-\frac14\sum_{mn,a}D_{mn}
+\langle[\sigma_n^a,[\sigma_m^a,O_{ij}]]\rangle.
+\end{equation}
+
+For $m=n=1$,
+\begin{align}
+[\sigma_1^a,O_{ij}]
+&=[\sigma_1^a,\sigma_{1i}]\sigma_{2j}\\
+&=2i\eps_{aik}\sigma_{1k}\sigma_{2j}.
+\end{align}
+A second commutator gives
+\begin{align}
+[\sigma_1^a,[\sigma_1^a,O_{ij}]]
+&=2i\eps_{aik}[\sigma_1^a,\sigma_{1k}]\sigma_{2j}\\
+&=-4\eps_{aik}\eps_{ak\ell}\sigma_{1\ell}\sigma_{2j}.
+\end{align}
+Summing over $a,k$ gives
+\begin{equation}
+\sum_{ak}\eps_{aik}\eps_{ak\ell}=-2\delta_{i\ell},
+\end{equation}
+so
+\begin{equation}
+\sum_a[\sigma_1^a,[\sigma_1^a,O_{ij}]]=8O_{ij}.
+\end{equation}
+Thus the $D_{11}$ piece contributes $-2D_{11}C_{ij}$, and similarly the $D_{22}$ piece gives $-2D_{22}C_{ij}$.
+
+For the cross term,
+\begin{align}
+[\sigma_1^a,O_{ij}]&=2i\eps_{aik}\sigma_{1k}\sigma_{2j},\\
+[\sigma_2^a,[\sigma_1^a,O_{ij}]]
+&=(2i)^2\eps_{aik}\eps_{aj\ell}\sigma_{1k}\sigma_{2\ell}\\
+&=-4\eps_{aik}\eps_{aj\ell}\sigma_{1k}\sigma_{2\ell}.
+\end{align}
+Use
+\begin{equation}
+\sum_a\eps_{aik}\eps_{aj\ell}
+=\delta_{ij}\delta_{k\ell}-\delta_{i\ell}\delta_{kj}.
+\end{equation}
+Hence
+\begin{equation}
+\sum_a[\sigma_2^a,[\sigma_1^a,O_{ij}]]
+=-4(\delta_{ij}O_{kk}-O_{ji}).
+\end{equation}
+Accounting for both $D_{12}$ and $D_{21}$ and taking a symmetric covariance matrix gives
+\begin{equation}
+\boxed{
+\dot C_{ij}
+=-2(D_{11}+D_{22})C_{ij}
++2D_{12}(\delta_{ij}C_{kk}-C_{ji}).
+}
+\label{eq:Cwhite}
+\end{equation}
+
+\subsection{Isotropic scalar limit}
+
+For an isotropic tensor
+\begin{equation}
+C_{ij}=P\delta_{ij},
+\end{equation}
+we have
+\begin{equation}
+C_{kk}=3P,
+\qquad
+C_{ji}=P\delta_{ij}.
+\end{equation}
+Substitute into Eq.~\eqref{eq:Cwhite}:
+\begin{align}
+\dot P\delta_{ij}
+&=-2(D_{11}+D_{22})P\delta_{ij}
++2D_{12}(3P\delta_{ij}-P\delta_{ij})\\
+&=\left[-2(D_{11}+D_{22})+4D_{12}\right]P\delta_{ij}.
+\end{align}
+Therefore
+\begin{equation}
+\boxed{
+\dot P
+=-2(D_{11}+D_{22}-2D_{12})P.
+}
+\label{eq:Pwhitegeneral}
+\end{equation}
+
+For statistically equivalent trajectories,
+\begin{equation}
+D_{11}=D_{22}=D(0),
+\qquad
+D_{12}=D(r),
+\end{equation}
+so
+\begin{equation}
+\boxed{
+\Gamma_{\rm rel}(r)=4[D(0)-D(r)],
+\qquad
+\dot P=-\Gamma_{\rm rel}(r)P.
+}
+\label{eq:Gammarel}
+\end{equation}
+
+Several checks are immediate:
+
+\begin{itemize}[leftmargin=1.5em]
+\item At $r=0$, perfectly common noise has $D(r)=D(0)$ and $\Gamma_{\rm rel}=0$.
+\item At large separation, $D(r)\to0$, giving independent-leg damping $\Gamma_{\rm rel}\to4D(0)$.
+\item Positivity of the covariance ensures $D(r)\le D(0)$ for equivalent variables, so the rate is nonnegative.
+\end{itemize}
+
+\section{Finite-memory noise and non-Markovian decay}
+
+\subsection{Interaction-picture expansion}
+
+White noise is a strong assumption. Let the interaction-picture Hamiltonian be
+\begin{equation}
+H_I(t)=\frac12\sum_{m,a}\xi_m^a(t)\sigma_m^a.
+\end{equation}
+For zero-mean noise the first cumulant vanishes. At second order, the time-convolutionless equation has the form
+\begin{equation}
+\dot\rho(t)
+=-\int_0^t d\tau\,
+\langle[H_I(t),[H_I(t-\tau),\rho(t)]]\rangle
++\mathcal O(\xi^3),
+\label{eq:TCL2}
+\end{equation}
+where the replacement $\rho(t-\tau)\to\rho(t)$ is the defining time-local TCL2 step. It does not yet require a delta-correlated bath.
+
+Assume
+\begin{equation}
+\langle\xi_m^a(t)\xi_n^b(t-\tau)\rangle
+=\delta^{ab}K_{mn}(\tau).
+\label{eq:memorycorr}
+\end{equation}
+Repeating the same Pauli algebra as in the white-noise case, the isotropic scalar obeys
+\begin{equation}
+\boxed{
+\dot P(t)
+=-2P(t)\int_0^t d\tau
+\left[K_{11}(\tau)+K_{22}(\tau)-K_{12}(\tau)-K_{21}(\tau)\right].
+}
+\label{eq:TCLP}
+\end{equation}
+For equivalent trajectories and a symmetric correlator,
+\begin{equation}
+\boxed{
+\dot P(t)
+=-4P(t)\int_0^t d\tau\,[K_0(\tau)-K_r(\tau)].
+}
+\label{eq:TCLPsym}
+\end{equation}
+
+The same relative-noise structure survives: memory modifies the time dependence, but common-mode cancellation remains.
+
+\subsection{Exponential memory kernel}
+
+Take
+\begin{equation}
+K_0(\tau)-K_r(\tau)
+=K_\Delta e^{-\tau/\tau_c}.
+\label{eq:expkernel}
+\end{equation}
+Then
+\begin{align}
+\int_0^t d\tau\,[K_0-K_r]
+&=K_\Delta\tau_c(1-e^{-t/\tau_c}).
+\end{align}
+Equation~\eqref{eq:TCLPsym} becomes
+\begin{equation}
+\frac{\dot P}{P}
+=-4K_\Delta\tau_c(1-e^{-t/\tau_c}).
+\end{equation}
+Integrate from $0$ to $t$:
+\begin{align}
+\ln\frac{P(t)}{P(0)}
+&=-4K_\Delta\tau_c
+\int_0^t dt'\,(1-e^{-t'/\tau_c})\\
+&=-4K_\Delta\tau_c
+\left[t-\tau_c(1-e^{-t/\tau_c})\right].
+\end{align}
+Thus
+\begin{equation}
+\boxed{
+P(t)=P(0)
+\exp\left\{
+-4K_\Delta\tau_c
+\left[t-\tau_c(1-e^{-t/\tau_c})\right]
+\right\}.
+}
+\label{eq:memorysolution}
+\end{equation}
+
+\subsection{Short- and long-time limits}
+
+For $t\ll\tau_c$,
+\begin{equation}
+1-e^{-t/\tau_c}
+=\frac{t}{\tau_c}-\frac{t^2}{2\tau_c^2}+\cdots,
+\end{equation}
+so
+\begin{align}
+t-\tau_c(1-e^{-t/\tau_c})
+&=\frac{t^2}{2\tau_c}+\mathcal O(t^3).
+\end{align}
+Therefore
+\begin{equation}
+P(t)
+\simeq
+P(0)e^{-2K_\Delta t^2}.
+\label{eq:quadratic}
+\end{equation}
+The initial decay is quadratic, as expected for a unitary system observed before a Markovian coarse graining is valid.
+
+For $t\gg\tau_c$,
+\begin{equation}
+t-\tau_c(1-e^{-t/\tau_c})\to t-\tau_c,
+\end{equation}
+so the asymptotic rate is
+\begin{equation}
+\Gamma_{\infty}=4K_\Delta\tau_c.
+\end{equation}
+This reproduces the exponential Markovian behavior after the bath memory has been integrated out.
+
+\section{Spatial structure and a QCD correlation length}
+
+Let the equal-time cross correlator decrease with pair separation,
+\begin{equation}
+D(r)=D(0)f(r/\ell_c),
+\qquad
+f(0)=1,
+\qquad
+f(\infty)=0.
+\end{equation}
+Then
+\begin{equation}
+\Gamma_{\rm rel}(r)=4D(0)[1-f(r/\ell_c)].
+\end{equation}
+For a smooth Gaussian choice
+\begin{equation}
+f(x)=e^{-x^2/2},
+\end{equation}
+we have at small separation
+\begin{equation}
+1-f(r/\ell_c)
+=\frac{r^2}{2\ell_c^2}+\mathcal O(r^4),
+\end{equation}
+so the decoherence rate starts quadratically in $r$. For a nonanalytic exponential correlator
+\begin{equation}
+f(x)=e^{-|x|},
+\end{equation}
+the leading behavior is linear in $r$.
+
+This gives a physically meaningful target for high-statistics data: the curvature of the small-separation spin-correlation curve is sensitive to the short-distance structure of the environmental correlator, not only to one overall damping constant.
+
+However, the experimental variable is $\Delta R$ in momentum space, not a direct coordinate-space separation. A model is required to relate
+\begin{equation}
+r(t)\leftrightarrow \Delta R,
+\end{equation}
+for example through parton trajectories during hadronization. This is one reason an event generator or transport model is ultimately needed.
+
+\section{Gauge-covariant QCD interpretation}
+
+\subsection{Why a naive color-field correlator is not gauge invariant}
+
+A schematic chromomagnetic correlator
+\begin{equation}
+\langle B^{ai}(x_1)B^{aj}(x_2)\rangle
+\end{equation}
+is not gauge invariant because the color field at $x_1$ and at $x_2$ transform in different local color frames. To compare them, parallel transport is required.
+
+In the adjoint representation, introduce a Wilson line
+\begin{equation}
+\mathcal U^{ab}_{C}(x_1,x_2)
+=\left[\mathcal P\exp\left(ig\int_C dz^\mu A_\mu^c(z)T^c_{\rm adj}\right)\right]^{ab}.
+\end{equation}
+Then a gauge-covariant two-point object is
+\begin{equation}
+\boxed{
+\mathcal G^{ij}(x_1,x_2)
+=
+\left\langle
+B^{ai}(x_1)
+\mathcal U^{ab}_{C}(x_1,x_2)
+B^{bj}(x_2)
+\right\rangle.
+}
+\label{eq:gaugecorr}
+\end{equation}
+The path $C$ is part of the definition. In a dynamical pair problem the natural path may be related to the quark trajectories or to a Schwinger-Keldysh contour construction.
+
+\subsection{Effective spin coupling and the strange-quark caveat}
+
+For a heavy quark, a Pauli chromomagnetic interaction appears systematically in a $1/m_Q$ expansion. For the strange quark, $m_s$ is not parametrically larger than $\Lambda_{\rm QCD}$, so importing the heavy-quark coefficient as a controlled approximation is not justified.
+
+The correct strategy is therefore:
+
+\begin{enumerate}[leftmargin=1.6em]
+\item use the field correlator structure, Eq.~\eqref{eq:gaugecorr}, as the symmetry-guided object;
+\item derive the coefficient and Lorentz structure from relativistic axial kinetic theory or a microscopic model;
+\item only then identify the effective $D_{mn}$ or $K_{mn}(\tau)$ that appears in the reduced spin equation.
+\end{enumerate}
+
+This separation prevents a conceptual mistake: a mathematically consistent Lindblad model can still have quantitatively incorrect QCD coefficients if its microscopic matching is uncontrolled.
+
+\section{Unitality and what relative noise can and cannot do}
+
+The Gaussian Hermitian-noise channel in Eq.~\eqref{eq:doublecomm} is unital:
+\begin{equation}
+\mathcal L(\Id)=0.
+\end{equation}
+Indeed every double commutator with the identity vanishes. Consequently
+\begin{equation}
+\rho=\frac{\Id_4}{4}
+\end{equation}
+is a fixed point.
+
+This means relative noise can \emph{destroy or reshape an existing spin correlation}, but cannot generate a pair correlation starting from the completely mixed state. A genuine source of correlation must therefore belong to a different microscopic sector, for example
+
+\begin{itemize}[leftmargin=1.5em]
+\item correlated pair production,
+\item a coherent pair interaction acting on a nontrivial source state,
+\item a non-unital dissipative process,
+\item or a connected collision/source term in the four-point kinetic hierarchy.
+\end{itemize}
+
+This distinction is important when combining glasma calculations with hadronization decoherence: a field-induced pair correlation generated at production must not be double counted as an additive source inside a later unital depolarizing channel.
+
+\section{Kadanoff--Baym equations and Wigner transformation}
+
+\subsection{One-particle lesser Green function}
+
+Define the lesser fermion Green function
+\begin{equation}
+G^<(x_1,x_2)
+=i\langle\bar\psi(x_2)\psi(x_1)\rangle
+\end{equation}
+(up to the sign convention used for fermions). Dyson equations on the Schwinger-Keldysh contour lead to left- and right-acting Kadanoff--Baym equations. Schematically,
+\begin{equation}
+(i\slashed\partial_{x_1}-m)G^<
+=\Sigma^R\circ G^<+\Sigma^<\circ G^A,
+\label{eq:KBleft}
+\end{equation}
+and
+\begin{equation}
+G^<(-i\overleftarrow{\slashed\partial}_{x_2}-m)
+=G^R\circ\Sigma^<+G^<\circ\Sigma^A.
+\label{eq:KBright}
+\end{equation}
+The symbol $\circ$ denotes a space-time convolution.
+
+The sum and difference of Eqs.~\eqref{eq:KBleft} and \eqref{eq:KBright} generate constraint and transport equations after Wigner transformation.
+
+\subsection{Wigner coordinates}
+
+Introduce
+\begin{equation}
+X=\frac{x_1+x_2}{2},
+\qquad
+s=x_1-x_2,
+\end{equation}
+and define
+\begin{equation}
+G^<(X,p)
+=\int d^4s\,e^{ip\cdot s}
+G^<\left(X+\frac{s}{2},X-\frac{s}{2}\right).
+\label{eq:wigner}
+\end{equation}
+Derivatives transform according to
+\begin{equation}
+\partial_{x_1}
+=\frac12\partial_X+\partial_s,
+\qquad
+\partial_{x_2}
+=\frac12\partial_X-\partial_s.
+\end{equation}
+Under the Fourier transform,
+\begin{equation}
+\partial_s\to -ip,
+\end{equation}
+so drift and mass-shell structures naturally emerge.
+
+\subsection{Moyal product}
+
+A convolution becomes a star product. For two Wigner-transformed quantities,
+\begin{equation}
+(A\circ B)(X,p)\to A\star B,
+\end{equation}
+with
+\begin{equation}
+\boxed{
+A\star B
+=A\exp\left[
+\frac{i}{2}
+\left(
+\overleftarrow\partial_X\cdot\overrightarrow\partial_p
+-
+\overleftarrow\partial_p\cdot\overrightarrow\partial_X
+\right)
+\right]B.
+}
+\label{eq:moyal}
+\end{equation}
+Expanding to first order in gradients gives
+\begin{equation}
+A\star B
+=AB+\frac{i}{2}\{A,B\}_{\rm PB}+\mathcal O(\partial_X^2),
+\end{equation}
+where
+\begin{equation}
+\{A,B\}_{\rm PB}
+=\partial_XA\cdot\partial_pB
+-\partial_pA\cdot\partial_XB.
+\end{equation}
+This is the formal origin of semiclassical drift terms and the controlled gradient expansion used in relativistic kinetic theory.
+
+\section{Clifford decomposition and the axial kinetic sector}
+
+A Dirac Wigner function can be decomposed as
+\begin{equation}
+\boxed{
+W
+=\frac14\left[
+\mathcal F
++i\gamma^5\mathcal P
++\gamma^\mu\mathcal V_\mu
++\gamma^\mu\gamma^5\mathcal A_\mu
++\frac12\sigma^{\mu\nu}\mathcal S_{\mu\nu}
+\right].
+}
+\label{eq:clifford}
+\end{equation}
+The coefficient functions are obtained by gamma traces. For example,
+\begin{equation}
+\mathcal A^\mu
+=\Trc(\gamma^\mu\gamma^5W).
+\end{equation}
+
+For massive fermions, spin is an independent dynamical degree of freedom rather than being completely locked to momentum. The axial kinetic theory of Hattori, Hidaka, and Yang provides a relativistic one-particle framework for this sector. Collisional extensions identify spin diffusion and polarization effects in the collision term.
+
+For our project, the main lesson is not to copy a published one-body equation verbatim but to preserve its structural ingredients when constructing the pair problem:
+
+\begin{itemize}[leftmargin=1.5em]
+\item Lorentz-covariant axial information,
+\item gauge-covariant derivatives and color structure,
+\item collision/self-energy terms,
+\item and the correct momentum-dependent spin projection.
+\end{itemize}
+
+\section{Why the pair problem requires a connected four-point function}
+
+A one-particle Wigner function cannot determine a genuine two-particle spin correlation. The relevant object is schematically
+\begin{equation}
+G^{<(2)}(1,2;1',2')
+=\langle
+\bar\psi(1')\psi(1)
+\bar\psi(2')\psi(2)
+\rangle.
+\label{eq:fourpoint}
+\end{equation}
+Its connected piece is
+\begin{equation}
+G_c^{(2)}
+=G^{(2)}-G^{(1)}G^{(1)}
+\end{equation}
+with the appropriate fermionic exchange terms included according to the species and ordering.
+
+For an $s\bar s$ pair the two legs are distinguishable by particle/antiparticle quantum numbers, but color and spinor indices remain nontrivial.
+
+A double Wigner transform introduces
+\begin{equation}
+(X_1,p_1;X_2,p_2).
+\end{equation}
+The axial--axial pair component is obtained by tracing with
+\begin{equation}
+\gamma^\mu\gamma^5\otimes\gamma^\nu\gamma^5.
+\end{equation}
+Finally Eq.~\eqref{eq:tetradprojection} converts the Lorentz tensor into the physical $C_{ab}$.
+
+This chain can be summarized as
+\begin{equation}
+\boxed{
+G_c^{(2)}
+\longrightarrow
+\Ccal^{\mu\nu}_{AA}
+\longrightarrow
+C_{ab}
+\longrightarrow
+P.
+}
+\label{eq:chain4point}
+\end{equation}
+
+The outstanding derivational challenge is therefore not merely a more complicated one-particle Wigner equation; it is a kinetic equation for the connected four-point function or an equivalent Bethe-Salpeter/BBGKY object.
+
+\section{Expected structure of the pair kinetic equation}
+
+Without claiming a completed derivation, the exact hierarchy suggests a schematic structure
+\begin{equation}
+\boxed{
+\Dcal_{12}\Ccal_{AA}
+=
+\Kcal_{\rm drift}[\Ccal_{AA}]
++\Kcal_{\rm coh}[\Ccal_{AA}]
++\Kcal_{\rm coll}[\Ccal_{AA}]
++\Scal_{\rm pair}.
+}
+\label{eq:schematicpair}
+\end{equation}
+Here
+
+\begin{itemize}[leftmargin=1.5em]
+\item $\Kcal_{\rm drift}$ propagates the two phase-space legs;
+\item $\Kcal_{\rm coh}$ contains coherent spin precession and spin-orbit structures;
+\item $\Kcal_{\rm coll}$ contains irreversible scattering/dephasing generated by self-energies;
+\item $\Scal_{\rm pair}$ is a genuine correlated source associated with pair production or connected gain terms.
+\end{itemize}
+
+The white-noise relative-field equation should emerge only after reducing Eq.~\eqref{eq:schematicpair} under strong assumptions: Gaussian bath, short memory, weak backreaction, and projection onto a low-dimensional spin subspace.
+
+This provides a falsifiable consistency condition. A microscopic derivation that does not reduce to common-mode cancellation in the appropriate symmetric limit would be inconsistent with the exact spin algebra derived earlier.
+
+\section{Source--propagator separation and double counting}
+
+Let the pair source be time dependent. A linear tensor equation may be written
+\begin{equation}
+\dot{\bm C}(t)=M(t)\bm C(t)+\bm G(t),
+\end{equation}
+where $\bm C$ denotes a vector containing independent tensor components. The exact Duhamel solution is
+\begin{equation}
+\boxed{
+\bm C(t_f)
+=U(t_f,t_0)\bm C(t_0)
++\int_{t_0}^{t_f}dt'\,U(t_f,t')\bm G(t'),
+}
+\label{eq:duhamel}
+\end{equation}
+with
+\begin{equation}
+U(t,t')=\mathcal T\exp\left[\int_{t'}^t du\,M(u)\right].
+\end{equation}
+
+This equation clarifies a recurring conceptual issue. If early color fields generate the pair correlation during production, that contribution belongs in $\bm G$ or in the source initial condition. Later unital decoherence belongs in $U$. Treating the same color-field correlator as both an additive source and a multiplicative decoherence term without a microscopic derivation risks double counting.
+
+If the source switches off at a time $t_s$, Eq.~\eqref{eq:duhamel} reduces to
+\begin{equation}
+\bm C(t_f)=U(t_f,t_s)\bm C_{\rm src},
+\end{equation}
+which is the regime where a source-times-survival factorization is justified.
+
+\section{Hadronization and spin-transfer map}
+
+\subsection{General tensor map}
+
+At hadronization the quark tensor is not directly observed. For a given production/feed-down channel $a$ on the $\Lambda$ side and $b$ on the $\bar\Lambda$ side, write a linear spin-transfer map
+\begin{equation}
+C^{\Lambda\bar\Lambda,(ab)}_{ij}
+=(T_a)_{ik}
+C^{s\bar s,(ab)}_{k\ell}
+(\bar T_b)_{j\ell}
++C^{\rm conn,had,(ab)}_{ij}.
+\label{eq:hadmap}
+\end{equation}
+The second term allows hadronization itself to create connected spin structure not reducible to independent one-body transfer.
+
+After summing source fractions,
+\begin{equation}
+\boxed{
+C^{\Lambda\bar\Lambda}_{ij}
+=\sum_{ab}R_{ab}
+(T_a)_{ik}
+C^{s\bar s,(ab)}_{k\ell}
+(\bar T_b)_{j\ell}
++\sum_{ab}R_{ab}C^{\rm conn,had,(ab)}_{ij}.
+}
+\label{eq:hadfull}
+\end{equation}
+
+A single scalar ``feed-down dilution'' is only valid if all $T_a$ are proportional to the same rotation-independent scalar and if $R_{ab}$ is independent of the kinematic variable being studied. Neither condition is guaranteed.
+
+\subsection{Phenomenological compressed form}
+
+For orientation, one may compress the observable to
+\begin{equation}
+\boxed{
+P_{\Lambda\bar\Lambda}^{\rm obs}
+=D_{\rm had}\,
+f_{\rm same}\,
+P_{s\bar s}^{\rm src}\,
+S_{\rm rel}
++P_{\rm conn}^{\rm had/resc},
+}
+\label{eq:phenomcompact}
+\end{equation}
+where
+
+\begin{itemize}[leftmargin=1.5em]
+\item $D_{\rm had}$ summarizes spin transfer and decay effects,
+\item $f_{\rm same}$ is the fraction of reconstructed pairs that retain a common correlated ancestor/source,
+\item $S_{\rm rel}$ is the survival factor generated by relative-noise dynamics,
+\item $P_{\rm conn}^{\rm had/resc}$ contains correlation created later by hadronization or rescattering.
+\end{itemize}
+
+Equation~\eqref{eq:phenomcompact} is useful for bookkeeping but should not be mistaken for a first-principles result. It is the scalar shadow of Eq.~\eqref{eq:hadfull}.
+
+\section{STAR versus CMS: phenomenological constraints}
+
+The STAR $pp$ result at $\sqrt{s}=200$ GeV shows a clearly positive short-range $\Lambda\bar\Lambda$ correlation and a substantial reduction at large separation. CMS at $\sqrt{s}=13$ TeV finds the $\Lambda\bar\Lambda$ correlation consistent with zero within uncertainties, while same-sign pairs are negative at small $\Delta R$.
+
+The difference suggests several nonexclusive possibilities:
+
+\begin{enumerate}[leftmargin=1.6em]
+\item The fraction of pairs inheriting a common nonperturbative $s\bar s$ source may decrease with collision energy because perturbative production and independent fragmentation become more important.
+\item The hadronization environment may have a different spatial/temporal correlation structure at LHC energies, changing $S_{\rm rel}$.
+\item Source composition and feed-down fractions may differ strongly between the STAR and CMS acceptances.
+\item The mapping between coordinate-space pair separation during confinement and the measured $\Delta R$ may be energy dependent.
+\item Additional same-sign mechanisms, including fragmentation and quantum-statistical/correlation effects, may contribute differently to $\Lambda\Lambda$ and $\bar\Lambda\bar\Lambda$.
+\end{enumerate}
+
+The current data therefore do not support a universal one-parameter decoherence curve that can simply be transported from RHIC to the LHC. Energy dependence must be built into the source and transport sectors separately.
+
+\section{Numerical estimates and limiting models}
+
+\subsection{Integrated relative-noise exponent}
+
+For a time-dependent separation $r(t)$,
+\begin{equation}
+P(t_h)
+=P(t_0)
+\exp\left[-\int_{t_0}^{t_h}dt\,\Gamma_{\rm rel}(r(t))\right].
+\end{equation}
+With Eq.~\eqref{eq:Gammarel},
+\begin{equation}
+D_{\rm rel}
+=4\int dt\,[D(0)-D(r(t))].
+\end{equation}
+The observed correlation measures this integrated quantity, not $D(0)$ or a formation time separately. Therefore a fitted ``decoherence time'' is generally a convolution of microscopic noise strength, spatial cross correlation, and trajectory history.
+
+\subsection{Ballistic toy trajectory}
+
+As a diagnostic, take
+\begin{equation}
+r(t)=v_{\rm rel}t\,\Delta R
+\end{equation}
+and a Gaussian spatial correlator
+\begin{equation}
+D(r)=D_0e^{-r^2/(2\ell_c^2)}.
+\end{equation}
+Then
+\begin{align}
+D_{\rm rel}(\Delta R)
+&=4D_0\int_0^{\tau_h}dt\,
+\left[1-e^{-v_{\rm rel}^2t^2\Delta R^2/(2\ell_c^2)}\right].
+\end{align}
+Let
+\begin{equation}
+\nu=\frac{v_{\rm rel}\tau_h\Delta R}{\ell_c}.
+\end{equation}
+Using
+\begin{equation}
+\int_0^{\tau_h}dt\,e^{-a^2t^2/2}
+=\tau_h\sqrt{\frac\pi2}\frac{1}{\nu}
+\operatorname{erf}\left(\frac{\nu}{\sqrt2}\right),
+\end{equation}
+we obtain
+\begin{equation}
+\boxed{
+D_{\rm rel}(\Delta R)
+=4D_0\tau_h
+\left[
+1-\sqrt{\frac\pi2}\frac1\nu
+\operatorname{erf}\left(\frac{\nu}{\sqrt2}\right)
+\right].
+}
+\label{eq:gaussDR}
+\end{equation}
+At small $\nu$,
+\begin{equation}
+\operatorname{erf}(\nu/\sqrt2)
+=\sqrt{\frac2\pi}\left(\nu-\frac{\nu^3}{6}+\cdots\right),
+\end{equation}
+so
+\begin{equation}
+D_{\rm rel}(\Delta R)
+\simeq\frac{2}{3}D_0\tau_h\nu^2+\cdots.
+\end{equation}
+Thus
+\begin{equation}
+1-\frac{P(\Delta R)}{P(0)}\propto(\Delta R)^2
+\end{equation}
+near zero separation in this smooth model.
+
+This result is not a prediction until the trajectory ansatz is justified, but it illustrates how a microscopic correlation length can appear in the measured angular dependence.
+
+\section{Positivity and density-matrix consistency checks}
+
+Any phenomenological tensor must correspond to a positive density matrix. For a Bell-diagonal state
+\begin{equation}
+\rho
+=\frac14\left[
+\Id\otimes\Id+
+C_x\sigma_x\otimes\sigma_x+
+C_y\sigma_y\otimes\sigma_y+
+C_z\sigma_z\otimes\sigma_z
+\right],
+\end{equation}
+the four eigenvalues are
+\begin{align}
+\lambda_1&=\frac14(1-C_x-C_y-C_z),\\
+\lambda_2&=\frac14(1-C_x+C_y+C_z),\\
+\lambda_3&=\frac14(1+C_x-C_y+C_z),\\
+\lambda_4&=\frac14(1+C_x+C_y-C_z),
+\end{align}
+up to the chosen Bell-state ordering. Positivity requires every $\lambda_i\ge0$.
+
+For an isotropic tensor $C_x=C_y=C_z=P$,
+\begin{equation}
+\lambda_S=\frac14(1-3P),
+\qquad
+\lambda_T=\frac14(1+P)
+\end{equation}
+for the singlet and each triplet component, respectively. Thus
+\begin{equation}
+-1\le P\le\frac13.
+\end{equation}
+The upper bound $P=1/3$ corresponds to a state with zero singlet weight. Any fit producing $P>1/3$ would be unphysical within the two-spin normalization used here.
+
+These positivity checks should be enforced directly in future likelihood fits rather than applied only after fitting.
+
+\section{Tensor observables beyond the scalar}
+
+If an approximate symmetry axis exists, write
+\begin{equation}
+C_{ij}=C_T(\delta_{ij}-n_in_j)+C_Ln_in_j.
+\end{equation}
+Then
+\begin{equation}
+P=\frac{2C_T+C_L}{3}.
+\end{equation}
+One scalar cannot determine two functions $C_T$ and $C_L$. This is a fundamental information loss, not merely a statistical limitation.
+
+A useful anisotropy observable is
+\begin{equation}
+A_C=C_T-C_L.
+\end{equation}
+Another is
+\begin{equation}
+R_{LT}=\ln\left|\frac{C_L}{C_T}\right|.
+\end{equation}
+In a source-dominated multiplicative regime,
+\begin{equation}
+C_T=C_T^{\rm src}e^{-D_T},
+\qquad
+C_L=C_L^{\rm src}e^{-D_L},
+\end{equation}
+so
+\begin{equation}
+R_{LT}
+=\ln\left|\frac{C_L^{\rm src}}{C_T^{\rm src}}\right|
+-(D_L-D_T).
+\end{equation}
+If the source ratio is independently constrained, $R_{LT}$ directly measures anisotropic decoherence. This would discriminate far more strongly among microscopic models than the trace alone.
+
+\section{Corrections and clarifications relative to earlier stages}
+
+Several conceptual points were sharpened on 23 August.
+
+\subsection{Connected versus full correlation}
+
+Earlier scalar formulas often implicitly assumed $\bm p=\bar{\bm p}=0$. The correct general object is Eq.~\eqref{eq:Cconnected}. This matters for heavy-ion collisions where one-body hyperon polarization may be nonzero.
+
+\subsection{Relativistic projection}
+
+A naive spatial trace of an axial--axial Lorentz tensor is not generally the physical spin scalar. Momentum-dependent tetrads are required, Eq.~\eqref{eq:relP}.
+
+\subsection{Relative-noise rate}
+
+The important rate is not a generic local noise strength but the difference between local and cross noise. In the symmetric white-noise limit the exact combination is Eq.~\eqref{eq:Gammarel}.
+
+\subsection{Generation versus decoherence}
+
+A Hermitian Gaussian stochastic field generates a unital channel. It cannot create spin correlation from the maximally mixed state. Correlation generated by early color fields belongs to the source/four-point sector, not to the same late-time unital damping term.
+
+\subsection{Perturbative spin-flip estimates}
+
+Long perturbative strange-quark spin-equilibration times do not invalidate nonperturbative hadronization decoherence; they only show that ordinary weak-coupling spin-flip scattering is unlikely to be fast enough by itself.
+
+\section{Concrete microscopic program emerging from the day}
+
+The research program can now be stated more sharply.
+
+\subsection{Step 1: source calculation}
+
+Construct the correlated $s\bar s$ source density matrix or four-point function for the relevant production mechanisms:
+
+\begin{itemize}[leftmargin=1.5em]
+\item vacuum/string-breaking-like production,
+\item perturbative $g\to s\bar s$ production,
+\item and, in heavy-ion collisions, glasma/Schwinger production.
+\end{itemize}
+
+These mechanisms need not have the same initial tensor.
+
+\subsection{Step 2: connected two-particle kinetic equation}
+
+Derive a gauge-covariant equation for $G_c^{(2)}$ or its axial--axial projection. The collision kernel should retain explicit spinor and color indices long enough to identify which terms are common mode and which are relative mode.
+
+\subsection{Step 3: controlled reduction}
+
+Under stated approximations, reduce the microscopic equation to an effective form and verify that it reproduces
+\begin{equation}
+\Gamma_{\rm rel}\propto D_{11}+D_{22}-D_{12}-D_{21}
+\end{equation}
+in the classical Gaussian limit.
+
+\subsection{Step 4: trajectory and geometry model}
+
+Relate the space-time separation entering the QCD correlator to measured pair kinematics. This may require a transport/event-generator interface rather than an analytic $r\propto t\Delta R$ ansatz.
+
+\subsection{Step 5: hadronization and feed-down}
+
+Implement Eq.~\eqref{eq:hadfull} channel by channel for primary $\Lambda$, $\Sigma^0$, $\Xi$, and other relevant parents, keeping tensor rather than scalar transfer whenever possible.
+
+\subsection{Step 6: simultaneous RHIC/LHC test}
+
+A credible model should explain why the positive short-range $\Lambda\bar\Lambda$ signal is prominent at STAR but not statistically significant at CMS, rather than fitting only one collision energy.
+
+\section{Highest-priority derivation for the next research day}
+
+The single highest-value technical step is to write the connected four-point Kadanoff--Baym equation with explicit indices. Let
+\begin{equation}
+G_{\alpha\beta;\gamma\delta}^{(2)<}(1,2;1',2')
+\end{equation}
+carry spinor indices, with color indices suppressed here for readability. One should act with the Dirac operator on leg 1 and separately on leg 2, yielding two coupled equations. After subtracting products of one-body equations, the connected piece will have schematic terms
+\begin{equation}
+\left(G^{-1}_{0,1}-\Sigma_1\right)\circ G_c^{(2)}
+=\Scal_{12}+\Kcal_{12}[G_c^{(2)}],
+\end{equation}
+and an analogous equation for leg 2.
+
+The immediate tasks are:
+
+\begin{enumerate}[leftmargin=1.6em]
+\item keep color indices and introduce gauge links before Wigner transformation;
+\item perform the double Wigner transform;
+\item project the connected function with $\gamma^\mu\gamma^5\otimes\gamma^\nu\gamma^5$;
+\item contract with the spin tetrads;
+\item identify the tensor structures that reduce to common and relative noise;
+\item project further onto singlet/triplet sectors if the scalar is the first target;
+\item derive the weak-coupling/short-memory limit and compare it with Eq.~\eqref{eq:Gammarel}.
+\end{enumerate}
+
+This route would turn the current phenomenological insight into a genuinely microscopic transport theory.
+
+\section{Summary of validated conclusions from 23 August}
+
+The full-day analysis supports the following conclusions.
+
+\begin{enumerate}[leftmargin=1.6em]
+\item The correct object is a connected two-particle spin tensor, not merely two independent one-body polarizations.
+\item The exact BBGKY reduction shows that the pair equation couples to three-body correlations; every closed kinetic equation therefore contains a nontrivial approximation.
+\item Relativistic spin correlations must be projected from the axial tensor with momentum-dependent spin tetrads.
+\item Independent one-body depolarization damps the pair mode with the sum of the two leg rates.
+\item Perfectly common stochastic spin fields leave $\bm\sigma_1\cdot\bm\sigma_2$ invariant exactly.
+\item In the isotropic Gaussian white-noise limit, the scalar damping rate is controlled by the relative covariance, $4[D(0)-D(r)]$ for equivalent trajectories.
+\item Finite bath memory produces a quadratic short-time decay and an exponential long-time limit while preserving the same relative-noise combination.
+\item A gauge-covariant microscopic interpretation requires Wilson-line-connected QCD field-strength correlators.
+\item For strange quarks, a heavy-quark Pauli coefficient is not a controlled quantitative matching prescription; a relativistic axial-kinetic derivation is preferable.
+\item Hermitian Gaussian noise is unital and cannot create pair correlation from the maximally mixed state; source generation and later decoherence must be separated.
+\item The pair problem requires a connected four-point Kadanoff--Baym/Wigner object and an axial--axial projection.
+\item Hadronization, feed-down, source fractions, and late connected effects are indispensable for comparison with $\Lambda\bar\Lambda$ data.
+\item The STAR/CMS contrast indicates nontrivial energy dependence and argues against a universal one-parameter decoherence model.
+\end{enumerate}
+
+\section*{References}
+\begin{enumerate}[leftmargin=1.6em]
+\item STAR Collaboration, ``Measuring spin correlation between quarks during QCD confinement,'' \emph{Nature} \textbf{650}, 65--71 (2026), arXiv:2506.05499.
+\item CMS Collaboration, ``Measurements of $\Lambda$ hyperon spin correlations in proton-proton and proton-lead collisions,'' CMS-PAS-HIN-26-002 (17 May 2026).
+\item J. I. Kapusta, E. Rrapaj and S. Rudaz, ``Relaxation time for strange quark spin in rotating quark-gluon plasma,'' \emph{Phys. Rev. C} \textbf{101}, 024907 (2020).
+\item J. I. Kapusta, E. Rrapaj and S. Rudaz, ``Spin versus helicity equilibration times and Lagrangian for strange quarks in rotating quark-gluon plasma,'' \emph{Phys. Rev. C} \textbf{102}, 064911 (2020).
+\item K. Hattori, Y. Hidaka and D.-L. Yang, ``Axial Kinetic Theory and Spin Transport for Fermions with Arbitrary Mass,'' \emph{Phys. Rev. D} \textbf{100}, 096011 (2019), arXiv:1903.01653.
+\item D.-L. Yang, K. Hattori and Y. Hidaka, ``Effective quantum kinetic theory for spin transport of fermions with collisional effects,'' arXiv:2002.02612.
+\item D.-L. Yang, ``Quantum kinetic theory for spin transport of quarks with background chromo-electromagnetic fields,'' \emph{JHEP} \textbf{06} (2022) 140, arXiv:2112.14392.
+\item A. Kumar, B. M\"uller and D.-L. Yang, ``Spin polarization and correlation of quarks from the glasma,'' \emph{Phys. Rev. D} \textbf{107}, 076025 (2023), arXiv:2212.13354.
+\item J. Barata, I. Cunt\'in, E. Rico and B. Wu, ``$\Lambda\bar\Lambda$ spin correlations in high-energy collisions from quantum channels: an open quantum system view of hadronization,'' arXiv:2606.30737 (2026).
+\end{enumerate}
+
+\end{document}
