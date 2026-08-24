@@ -1,0 +1,178 @@
+
+\subsection{Single-spin depolarizing generator}
+
+Consider one spin with an isotropic depolarizing generator
+\begin{equation}
+\Dcal_m\rho
+=\frac{\gamma_m}{4}\sum_{a=1}^{3}
+(\sigma_{ma}\rho\sigma_{ma}-\rho).
+\label{eq:depgen}
+\end{equation}
+We derive its action on a Pauli operator in the Heisenberg picture. The adjoint is
+\begin{equation}
+\Dcal_m^\dagger O
+=\frac{\gamma_m}{4}\sum_a
+(\sigma_{ma}O\sigma_{ma}-O).
+\end{equation}
+For $O=\sigma_{mi}$, use
+\begin{equation}
+\sum_a\sigma_a\sigma_i\sigma_a=-\sigma_i.
+\label{eq:pauliidentity}
+\end{equation}
+To check Eq.~\eqref{eq:pauliidentity}, the term $a=i$ gives $\sigma_i$, while each of the other two Pauli matrices anticommutes with $\sigma_i$ and contributes $-\sigma_i$. Hence
+\begin{equation}
+\sigma_i-\sigma_i-\sigma_i=-\sigma_i.
+\end{equation}
+Therefore
+\begin{align}
+\Dcal_m^\dagger\sigma_{mi}
+&=\frac{\gamma_m}{4}\left[-\sigma_{mi}-3\sigma_{mi}\right]\\
+&=-\gamma_m\sigma_{mi}.
+\end{align}
+So the one-body polarization satisfies
+\begin{equation}
+\dot p_i=-\gamma_m p_i.
+\end{equation}
+
+\subsection{Two-spin tensor under independent channels}
+
+Let
+\begin{equation}
+\dot\rho=(\Dcal_1+\Dcal_2)\rho.
+\end{equation}
+For the product operator $\sigma_i\otimes\sigma_j$,
+\begin{align}
+(\Dcal_1^\dagger+\Dcal_2^\dagger)(\sigma_i\otimes\sigma_j)
+&=(-\gamma_1\sigma_i)\otimes\sigma_j
++\sigma_i\otimes(-\gamma_2\sigma_j)\\
+&=-(\gamma_1+\gamma_2)\sigma_i\otimes\sigma_j.
+\end{align}
+Hence
+\begin{equation}
+\boxed{
+\dot C_{ij}=-(\gamma_s+\gamma_{\bar s})C_{ij}
+}
+\label{eq:indepC}
+\end{equation}
+when connected one-body terms are treated consistently.
+
+For time-dependent rates,
+\begin{equation}
+\boxed{
+C_{ij}(t_h)
+=C_{ij}(t_0)
+\exp\left[-\int_{t_0}^{t_h}dt\,(\gamma_s+\gamma_{\bar s})\right].
+}
+\label{eq:indepSolution}
+\end{equation}
+The scalar obeys the same multiplicative factor.
+
+This provides a useful consistency rule: if the two legs lose spin information independently, their exponents add. A phenomenological formula using only one leg's rate would undercount the pair damping by a factor of two in the symmetric case.
+
+\subsection{Interpretation of perturbative strange-quark spin equilibration}
+
+Perturbative estimates of strange-quark spin equilibration in a weakly coupled rotating QGP find times much longer than typical heavy-ion evolution times. This does not prove that spin correlations are frozen during confinement, because the STAR phenomenon occurs in a nonperturbative hadronization regime rather than a weakly coupled thermal QGP. It does, however, imply that ordinary perturbative helicity/spin-flip scattering is unlikely to be the dominant mechanism responsible for a rapid loss of the pair correlation.
+
+\section{Common and relative stochastic fields}
+
+\subsection{Hamiltonian decomposition}
+
+Model unresolved spin-dependent environmental fields by
+\begin{equation}
+H_I(t)
+=\frac12\left[
+\bm\xi_1(t)\cdot\bm\sigma_1
++\bm\xi_2(t)\cdot\bm\sigma_2
+\right].
+\label{eq:stochH}
+\end{equation}
+Define the common and relative fields
+\begin{equation}
+\bar{\bm\xi}
+=\frac{\bm\xi_1+\bm\xi_2}{2},
+\qquad
+\bm\xi_-
+=\bm\xi_1-\bm\xi_2.
+\end{equation}
+Then
+\begin{equation}
+H_I
+=\frac12\bar{\bm\xi}\cdot(\bm\sigma_1+\bm\sigma_2)
++\frac14\bm\xi_-\cdot(\bm\sigma_1-\bm\sigma_2).
+\label{eq:commonrelative}
+\end{equation}
+
+\subsection{Exact cancellation of common-mode precession}
+
+Recall
+\begin{equation}
+Q=\sum_i\sigma_{1i}\sigma_{2i}.
+\end{equation}
+We compute
+\begin{align}
+[Q,\sigma_{1a}]
+&=\sum_i[\sigma_{1i},\sigma_{1a}]\sigma_{2i}\\
+&=2i\sum_{ik}\eps_{iak}\sigma_{1k}\sigma_{2i},
+\end{align}
+and similarly
+\begin{align}
+[Q,\sigma_{2a}]
+&=2i\sum_{ik}\eps_{iak}\sigma_{1i}\sigma_{2k}.
+\end{align}
+Rename $i\leftrightarrow k$ in the second term:
+\begin{equation}
+[Q,\sigma_{2a}]
+=2i\sum_{ik}\eps_{kai}\sigma_{1k}\sigma_{2i}.
+\end{equation}
+Because $\eps_{kai}=-\eps_{iak}$,
+\begin{equation}
+[Q,\sigma_{2a}]=-[Q,\sigma_{1a}].
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{
+[Q,\sigma_{1a}+\sigma_{2a}]=0.
+}
+\label{eq:commoncancel}
+\end{equation}
+
+Equation~\eqref{eq:commoncancel} is exact. A perfectly common field generates a collective $SU(2)$ rotation of the pair and leaves $Q$ invariant. Thus the scalar correlation is not sensitive to the magnitude of common spin precession; it is sensitive to the difference between what the two constituents experience.
+
+This is one of the most robust results in the whole research program.
+
+\section{White-noise limit and the relative-noise damping rate}
+
+\subsection{Gaussian noise correlator}
+
+Assume zero-mean Gaussian noise
+\begin{equation}
+\langle\xi_m^a(t)\rangle=0,
+\end{equation}
+with
+\begin{equation}
+\langle\xi_m^a(t)\xi_n^b(t')\rangle
+=2D_{mn}\delta^{ab}\delta(t-t').
+\label{eq:whitenoise}
+\end{equation}
+Here $m,n\in\{1,2\}$ label the two particles. Positivity of the covariance matrix requires
+\begin{equation}
+D_{11}\ge0,
+\qquad
+D_{22}\ge0,
+\qquad
+D_{12}^2\le D_{11}D_{22}.
+\label{eq:Dpositive}
+\end{equation}
+
+For Hermitian classical Gaussian noise, averaging the stochastic unitary evolution gives the double-commutator master equation
+\begin{equation}
+\boxed{
+\dot\rho
+=-\frac14\sum_{mn,a}D_{mn}
+[\sigma_m^a,[\sigma_n^a,\rho]].
+}
+\label{eq:doublecomm}
+\end{equation}
+The overall normalization follows from the $1/2$ in Eq.~\eqref{eq:stochH} and the convention in Eq.~\eqref{eq:whitenoise}.
+
+\subsection{Equation for the full tensor}
