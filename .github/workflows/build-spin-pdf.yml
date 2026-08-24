@@ -24,6 +24,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-science poppler-utils
 
+      - name: Assemble staged full report if present
+        run: |
+          set -euo pipefail
+          if [ -d .daily_parts/2026-08-23 ]; then
+            cat .daily_parts/2026-08-23/part_*.texpart > tex/spin_correlation_2026-08-23.tex
+            test -s tex/spin_correlation_2026-08-23.tex
+            echo "Assembled August 23 full report: $(wc -l < tex/spin_correlation_2026-08-23.tex) lines"
+          fi
+
       - name: Compile and verify all spin-correlation reports
         run: |
           set -euo pipefail
@@ -43,9 +52,12 @@ jobs:
             test -n "$pages"
             test "$pages" -gt 0
 
-            # Historical repair guard: the validated 22 Aug source is a 9-page report.
+            # Historical August 22 repair is validated as a 9-page report.
             if [ "$base" = "spin_correlation_2026-08-22" ]; then
               test "$pages" -eq 9
+            else
+              # New permanent standard: daily reports from August 23 onward must be substantive >=20 pages.
+              test "$pages" -ge 20
             fi
 
             cp "build/${base}.pdf" "pdf/${base}.pdf"
@@ -53,14 +65,18 @@ jobs:
             echo "Verified ${base}.pdf: ${pages} page(s), $(stat -c%s "pdf/${base}.pdf") bytes"
           done
 
-      - name: Commit generated PDFs
+      - name: Commit canonical TeX and generated PDFs
         run: |
+          set -euo pipefail
+          if [ -d .daily_parts/2026-08-23 ]; then
+            rm -rf .daily_parts/2026-08-23
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A pdf/
+          git add -A tex/ pdf/ .daily_parts/ || true
           if git diff --cached --quiet; then
-            echo "No PDF changes to commit."
+            echo "No report changes to commit."
           else
-            git commit -m "Rebuild verified spin-correlation PDF reports"
+            git commit -m "Rebuild detailed spin-correlation daily reports"
             git push
           fi
